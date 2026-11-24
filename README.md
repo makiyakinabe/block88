@@ -17,7 +17,16 @@ To host it with GitHub Pages: Settings → Pages → Deploy from a branch → `m
 - Bus 36 city loop with five districts
 - "Be someone else today": spend a day as Uncle Rahim, Ah Ma Lim, Auntie Kavitha, Kopi Uncle, Uncle Muthu or the karung guni uncle
 - A 40th anniversary finale for the block
+- A void deck noticeboard of small favours, and a kindness journal that fills in as you help
+- Seven community levels, from New Neighbour to Heart of Tembusu, each opening bigger projects: a block clean-up, a get-together, a donation drive, a residents' meeting and Tembusu Day
+- Introductions: bring together neighbours who have never spoken, and watch the who-knows-who web grow
+- "Ask a grown-up you know": six questions to ask a parent, grandparent or neighbour, with their answers kept in the journal
+- A seven-chapter story about a torn 1985 photograph of the block and the night every window was lit
 
 ## Notes
 
-Prototype. Progress is not saved between sessions. Built with Three.js (loaded from a CDN, so it needs an internet connection).
+Prototype. The community level, journal, introductions, grown-up stories, story chapters and discovered places are saved in the browser on the same device. Nothing is sent anywhere. The day's errands start fresh each session.
+
+Made for landscape tablets. It also lays out for phones held sideways, and shows a turn-your-device hint in portrait.
+
+Built with Three.js (loaded from a CDN, so it needs an internet connection). Level titles are made up for the game and are not real grassroots positions.
