@@ -346,7 +346,7 @@ button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
   <div id="daySum" class="modal" hidden><div class="panel"><small>End of the day</small><h2>What a day!</h2><div id="dsStars" class="dsstars"></div><ul id="dsList" class="dslist"></ul><p id="dsMsg"></p><div class="mbtns"><button id="dsAgain" class="big">Plan tomorrow</button><button id="dsX" class="ghost">Keep exploring</button></div></div></div>
   <div id="phone" class="modal" hidden><div class="phonep"><div class="phtop"><span>📱 Tembusu</span><button id="phX" aria-label="Close phone">✕</button></div><div id="phTabs"><button data-t="chat">💬 Chats</button><button data-t="nb">🏠 Neighbours</button><button data-t="food">🍜 Passport</button><button data-t="album">🎒 Album</button><button data-t="real">🌳 Real</button><button data-t="me">⭐ Me</button></div><div id="phBody"></div></div></div>
   <div id="shop" class="modal" hidden><div class="panel shopp"><h2>Sin Seng Huat Provision</h2><p>Auntie Lily's shop. Pick everything on Mum's list, then pay.</p><p id="shopList" class="ptip" hidden></p><div id="shopGrid"></div><p id="shopMsg" class="ptip"></p><div class="mbtns"><button id="shopPay" class="big">Pay Auntie Lily</button><button id="shopPeek" class="ghost">📱 Check Mum's message</button><button id="shopX" class="ghost">Leave shop</button></div></div></div>
-  <div id="kopiM" class="modal" hidden><div class="panel kopip"><h2>Ah Seng's drinks stall</h2><div id="kOrder" class="korder"></div><div id="kRows"></div><p id="kMsg" class="ptip"></p><div id="kHelp" class="ptip khelp" hidden><b>Kopi lingo cheat sheet</b><br>Kopi = coffee · Teh = tea · plain means condensed milk<br>C = evaporated milk · O = no milk<br>Siew dai = less sweet · Ga dai = more sweet · Kosong = no sugar<br>Peng = iced · Dabao = takeaway</div><div class="mbtns"><button id="kServe" class="big">Serve drink</button><button id="kHelpB" class="ghost">Cheat sheet</button><button id="kX" class="ghost">Stop helping</button></div></div></div>
+  <div id="kopiM" class="modal" hidden><div class="panel kopip"><h2>Ah Seng's drinks stall</h2><div id="kOrder" class="korder"></div><div id="kRows"></div><p id="kMsg" class="ptip"></p><div id="kHelp" class="ptip khelp" hidden><b>Kopi lingo cheat sheet</b><br>Kopi = coffee · Teh = tea · Tak kiu = chocolate malt drink · plain means condensed milk<br>C = evaporated milk · O = no milk<br>Siew dai = less sweet · Ga dai = more sweet · Kosong = no sugar<br>Peng = iced · Dabao = takeaway</div><div class="mbtns"><button id="kServe" class="big">Serve drink</button><button id="kHelpB" class="ghost">Cheat sheet</button><button id="kX" class="ghost">Stop helping</button></div></div></div>
   <div id="order" class="modal" hidden><div class="panel kopip"><h2 id="oTitle"></h2><p id="oWho"></p><div id="oRows"></div><div class="mbtns"><button id="oGo" class="big">Order</button><button id="oX" class="ghost">Never mind</button></div></div></div>
   <div id="eat" hidden><span id="eatIc"></span><b id="eatT"></b><i>nom nom nom</i></div>
   <div id="btM" class="modal" hidden><div class="panel kopip"><h2>Pearl Pop Bubble Tea</h2><div id="btOrder" class="korder"></div><div class="btwrap"><div id="btCup"></div><div id="btRows"></div></div><p id="btMsg" class="ptip"></p><div class="mbtns"><button id="btSeal" class="big">Shake and seal</button><button id="btX" class="ghost">Stop helping</button></div></div></div>
@@ -361,7 +361,7 @@ button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
   <div id="tik" class="modal" hidden><div class="panel tikp"><h2>Tikam-tikam</h2><p id="tikMsg"></p><div id="tikGrid"></div><button id="tikX" class="big">OK</button></div></div>
   <div id="cbus" hidden><i>36</i><span id="cbusT"></span><b>STOP</b></div>
   <div id="busBar" hidden><b id="busSvc"></b><span id="busNext"></span><div><button id="busBell" class="ghost">🔔 Ring bell</button><button id="busOff" class="big">Alight</button></div></div>
-  <div id="menu" class="modal" hidden><div class="panel"><h2>Paused</h2><p id="menuTxt"></p><div class="mbtns"><button id="mResume" class="big">Resume</button><button id="mSet" class="ghost">Settings</button><button id="mCust" class="ghost">Customise character</button><button id="mQuiz" class="ghost">Personality quiz</button><button id="mCast" class="ghost">Meet the neighbours</button><button id="mHelp" class="ghost">How to play</button><button id="mTut" class="ghost">Replay tutorial</button><button id="mRestart" class="ghost">Restart</button></div></div></div>
+  <div id="menu" class="modal" hidden><div class="panel"><h2>Paused</h2><p id="menuTxt"></p><div class="mbtns"><button id="mResume" class="big">Resume</button><button id="mSet" class="ghost">Settings</button><button id="mCust" class="ghost">Customise character</button><button id="mQuiz" class="ghost">Personality quiz</button><button id="mCast" class="ghost">Meet the neighbours</button><button id="mHelp" class="ghost">How to play</button><button id="mTut" class="ghost">Replay tutorial</button><button id="mRestart" class="ghost">Restart today</button></div></div></div>
 </div>
 <div id="title"><div class="card intro">
   <section class="pg" data-p="0">
@@ -3008,9 +3008,9 @@ function talkTo(k) {
   const n = npcs[k], c = n.c.g; c.rotation.y = Math.atan2(P.p.x - c.position.x, P.p.z - c.position.z);
   const R_ = 'Uncle Rahim', A = 'Ah Ma Lim', KV = 'Auntie Kavitha', U = 'Kopi Uncle';
   if (k === 'rahim') {
-    if (Q.kopi === 0) say([[R_, `Eh, ${PL.name}! Uncle play chess until forget to buy kopi.`], [R_, 'Can help Uncle buy one kopi-O? Walk down the covered walkway to the food centre. Kopi stall is at the back.'], [R_, 'Must bring back hot hor. Cold kopi, Uncle cannot drink.']], () => { Q.kopi = 1; updUI(); });
+    if (Q.kopi === 0) say([[R_, WORLD.back ? `Eh, ${PL.name}! New day, same uncle. Play chess until forget to buy kopi again.` : `Eh, ${PL.name}! Uncle play chess until forget to buy kopi.`], [R_, 'Can help Uncle buy one kopi-O? Walk down the covered walkway to the food centre. Kopi stall is at the back.'], [R_, 'Must bring back hot hor. Cold kopi, Uncle cannot drink.']], () => { Q.kopi = 1; updUI(); });
     else if (Q.kopi === 1) say([[R_, 'Kopi stall is the first one at the back of the food centre. Go, go!']]);
-    else if (Q.kopi === 2) say([[R_, `Wah, still hot! Shiok. Thank you, ${PL.name}.`], [R_, 'Ah Ma Lim on the 12th floor was looking for you. Remember, our lift only stops at 4, 7 and 10.']], () => { Q.kopi = 3; kopiBag.visible = false; mei.holding = false; $('warm').hidden = true; thank(winIdx(10, 32), 'Uncle Rahim\'s window lights up.'); });
+    else if (Q.kopi === 2) say([[R_, `Wah, still hot! Shiok. Thank you, ${PL.name}.`], [R_, 'Ah Ma Lim on the 12th floor was looking for you. ' + (NICHE.lup ? 'Take the lift all the way up. It stops at every storey now!' : 'Remember, our lift only stops at 4, 7 and 10.')]], () => { Q.kopi = 3; kopiBag.visible = false; mei.holding = false; $('warm').hidden = true; thank(winIdx(10, 32), 'Uncle Rahim\'s window lights up.'); });
     else say([[R_, oneOf(['Checkmate! ...Aiyah, I lost again.', 'Last time I drove bus service 63 for thirty years. Every road in Tembusu I know.', 'Chess is like life. Must think three moves ahead.'])]]);
   }
   if (k === 'kopi') {
@@ -3023,14 +3023,14 @@ function talkTo(k) {
     else say([[U, oneOf(['Kopi, kopi-C, teh-O, teh-peng... later come back ah.', 'Kopi-O kosong means black coffee, no sugar. Now you know!', 'Food centre busiest at lunch. 12 to 1, cannot find seat!'])]]);
   }
   if (k === 'ama') {
-    if (Q.sarong === 0) say([[A, 'Ah girl, you came! The wind this morning blew my batik sarong off the laundry pole.'], [A, 'I saw it fly towards the dragon playground. Can help Ah Ma bring it back?']], () => { Q.sarong = 1; updUI(); });
+    if (Q.sarong === 0) say([[A, WORLD.back ? 'Ah girl, you came! You will not believe it. The wind took my batik sarong off the laundry pole again. I must buy stronger pegs.' : 'Ah girl, you came! The wind this morning blew my batik sarong off the laundry pole.'], [A, 'I saw it fly towards the dragon playground. Can help Ah Ma bring it back?']], () => { Q.sarong = 1; updUI(); });
     else if (Q.sarong === 1) say([[A, 'Try the top of the dragon at the playground. Careful when you climb!']]);
     else if (Q.sarong === 2) say([[A, 'Aiyo, my favourite one! Thank you, girl.'], [A, 'Next time Ah Ma make ang ku kueh for you.']], () => { Q.sarong = 3; cape.visible = false; thank(winIdx(12, 36), 'Ah Ma Lim\'s window lights up.'); });
     else say([[A, oneOf(['My chilli plant growing well, see? Next week can pluck already.', 'Your mummy was so small when she moved in. Now you so big already!', 'My pandan leaves I give to the bakery uncle for his kaya. Very fragrant.'])]]);
   }
   if (k === 'kav') {
     const left = pots.filter(p => !p.done).length;
-    if (Q.mozzie === 0) say([[KV, `Hi ${PL.name}. I just came back from night shift and the mosquitoes are everywhere.`], [KV, 'Some flower pot plates on storeys 7 and 4 have stagnant water. Can you tip the water out? Then the mosquitoes cannot breed.']], () => { Q.mozzie = left ? 1 : 2; updUI(); });
+    if (Q.mozzie === 0) say([[KV, WORLD.back ? `Hi ${PL.name}. It rained in the night, so the pot plates are full again and the mosquitoes are back.` : `Hi ${PL.name}. I just came back from night shift and the mosquitoes are everywhere.`], [KV, 'Some flower pot plates on storeys 7 and 4 have stagnant water. Can you tip the water out? Then the mosquitoes cannot breed.']], () => { Q.mozzie = left ? 1 : 2; updUI(); });
     else if (Q.mozzie === 1) say([[KV, `Still ${left} pot plate${left > 1 ? 's' : ''} with water. Check storeys 4 and 7.`]]);
     else if (Q.mozzie === 2) say([[KV, 'No more mozzies! Now I can finally sleep. Thank you.']], () => { Q.mozzie = 3; thank(winIdx(7, 31), 'Auntie Kavitha\'s window lights up.'); });
     else say([[KV, oneOf(['Shh... sleeping time.', 'Remember: turn over pails and empty plant plates. Mozzies can breed in about a week!', 'Night shift again tonight. Ward very busy this month.'])]]);
@@ -3226,7 +3226,7 @@ function whereAmI() {
   if (zz === 'city') return cityWhere(p);
   if (p.x > 58 && p.x < 88 && p.z > -34 && p.z < -13) return 'Tembusu Bus Interchange';
   if (zz === 'estate' && p.z > 44 && p.y < 3) return p.x < -18 && p.z > 51 ? 'Mangrove Boardwalk' : p.x > 36 && p.z > 51 ? 'Rainforest Trail' : 'Tembusu Reservoir Park';
-  if (p.x > 27 && p.x < 39 && p.z > 14 && p.z < 23) return "Ah Gong's Snack Shop";
+  if (p.x > 27 && p.x < 39 && p.z > 14 && p.z < 23) return 'Ah Gong Snack Shop';
   if (zz === 'train') return 'On the Tembusu Line';
   if (typeof BUS !== 'undefined' && BUS.on) return `On bus ${BUS.v.svc}`;
   if (p.x > -101 && p.x < -73 && p.z > -34 && p.z < -19) return 'Tembusu Wet Market';
@@ -3923,9 +3923,9 @@ function stats() {
   const hearts = Object.values(NB).reduce((a, b) => a + b.h, 0);
   return { nb: errandsDone() * 10 + hearts * 2, ex: VISITED.size * 4, fd: STAMPS.size * 10, co: (Q.kueh + Q.coins * 3) * 2 + PHR.size * 3, cs: (PLAY.five + PLAY.sticks + PLAY.chapteh) * 8 + sideCount() * 10 + (LIFT.chats || 0) * 3 };
 }
-const RANKS = [[0, 'New Resident', 'Just moved in. Meet your neighbours!'], [60, 'Familiar Face', 'The aunties wave when they see you.'], [180, 'Neighbourhood Regular', 'Everyone at the void deck knows your name.'], [360, 'Community Legend', 'Blk 88 cannot do without you!']];
+const RANKS = [[0, 'Quiet Resident', 'You say hello in the lift. Time to meet your neighbours!'], [60, 'Familiar Face', 'The aunties wave when they see you.'], [180, 'Neighbourhood Regular', 'Everyone at the void deck knows your name.'], [360, 'Community Legend', 'Blk 88 cannot do without you!']];
 const rankOf = pts => RANKS.reduce((r, x) => pts >= x[0] ? x : r, RANKS[0]);
-let lastRank = 'New Resident';
+let lastRank = 'Quiet Resident';
 
 // ---- the phone
 function phoneMsg(from, text, o = {}) { PH.msgs.push({ from, text, t: PH.t, act: o.act, btn: o.btn, grp: o.grp ?? true, done: false }); PH.unread++; sfx('tap'); updPhoneBadge(); if (o.toast !== false) toast(`📱 ${from}: ${text.length > 60 ? text.slice(0, 58) + '…' : text}`, 3.2); if (!$('phone').hidden) drawPhone(); }
@@ -3977,7 +3977,7 @@ function stepPhone(dt) {
   once('hello', 6, () => phoneMsg('Tembusu Zone 3 RC', `Welcome to the Blk 88 group chat, ${PL.name}! Tap 📱 any time to see messages, your neighbours and your food passport.`, { toast: false }));
   once('chope', 45, () => phoneMsg('Auntie Mei Ling', `Eh ${PL.name}, are you nearby? Can help Auntie chope a table at the food centre? My kakis coming for lunch. I'm at the Blk 88 void deck!`, { btn: 'Can, coming!', act: () => { TRACK = 'chope'; updUI(); } }));
   if (EQ.rain === 0 && (PH.t > 140 || (TRACK === 'rain' && PH.t > 8))) once('rain', 0, startRainEvent);
-  if (EQ.list === 0 && (PH.t > 220 || (TRACK === 'list' && PH.t > 8))) once('list', 0, () => { phoneMsg('Mum', `${PL.name}, can help buy a few things from Auntie Lily's shop at Blk 87? 1. Eggs 2. Milo 3. Bread. Thank you!`, { btn: 'Okay Mum!', act: () => { TRACK = 'list'; updUI(); } }); EQ.list = 1; LISTX.items = ['Eggs', 'Milo', 'Bread']; updUI(); });
+  if (EQ.list === 0 && (PH.t > 220 || (TRACK === 'list' && PH.t > 8))) once('list', 0, () => { phoneMsg('Mum', `${PL.name}, can help buy a few things from Auntie Lily's shop at Blk 87? 1. Eggs 2. Malt drink 3. Bread. Thank you!`, { btn: 'Okay Mum!', act: () => { TRACK = 'list'; updUI(); } }); EQ.list = 1; LISTX.items = ['Eggs', 'Malt drink', 'Bread']; updUI(); });
   if (EQ.list === 1 && !PH.sent.has('list2') && PH.sent.has('list') && PH.t > LISTX.t0 + 25) { PH.sent.add('list2'); LISTX.items.push('Tissue'); phoneMsg('Mum', 'Oh also buy one pack of tissue!'); }
   if (EQ.list === 1 && !PH.sent.has('list3') && PH.sent.has('list2') && PH.t > LISTX.t0 + 45) { PH.sent.add('list3'); LISTX.items.push('Batteries'); phoneMsg('Mum', 'And batteries for Ah Gong\'s radio. Sorry ah, last one! 😅'); }
   PH.nextRandom -= dt;
@@ -4049,7 +4049,7 @@ inter.push({ pos: () => npcs.ama.c.g.position.clone().add(new T.Vector3(0, 0, -.
 
 // ---- Mum's growing shopping list at Sin Seng Huat Provision
 const LISTX = { items: [], t0: 0 };
-const GOODS = [['Eggs', '🥚', 2.6], ['Milo', '🥫', 9.5], ['Bread', '🍞', 2.8], ['Tissue', '🧻', 1.0], ['Batteries', '🔋', 3.5], ['Rice', '🍚', 12.0], ['Kaya', '🫙', 4.2], ['Cooking oil', '🛢️', 6.5], ['Instant noodles', '🍜', 3.2], ['Biscuits', '🍪', 2.4], ['Soap', '🧼', 1.8], ['Ice cream', '🍦', 1.5]];
+const GOODS = [['Eggs', '🥚', 2.6], ['Malt drink', '🥫', 9.5], ['Bread', '🍞', 2.8], ['Tissue', '🧻', 1.0], ['Batteries', '🔋', 3.5], ['Rice', '🍚', 12.0], ['Kaya', '🫙', 4.2], ['Cooking oil', '🛢️', 6.5], ['Instant noodles', '🍜', 3.2], ['Biscuits', '🍪', 2.4], ['Soap', '🧼', 1.8], ['Ice cream', '🍦', 1.5]];
 const BASKET = new Set();
 inter.push({ pos: () => lily.g.position.clone().add(new T.Vector3(1.2, 0, -.6)), r: 1.8, label: 'Shop for Mum', ok: () => EQ.list === 1, act: () => { BASKET.clear(); $('shop').hidden = false; drawShop(); } });
 function drawShop(msg) {
@@ -4067,13 +4067,13 @@ $('shopPay').addEventListener('click', () => {
   $('shop').hidden = true; EQ.list = 2; sfx('coin');
   say([['Auntie Lily', EQ.peeks === 0 ? 'Wah, all correct without checking your phone! Good memory!' : `All correct! Total $${[...BASKET].reduce((a, n) => a + GOODS.find(g => g[0] === n)[2], 0).toFixed(2)}. Say hi to your mummy!`], ['Auntie Lily', 'Here, one sweet for you. Free!']], () => { heart('lily', EQ.peeks === 0 ? 2 : 1, EQ.peeks === 0 ? 'Remembered the whole list!' : 'Brought the right things for Mum'); updUI(); });
 });
-inter.push({ pos: () => new T.Vector3(HX + 1.0, 0, 6.4), r: 1.6, label: 'Put groceries on the table', ok: () => EQ.list === 2, act: () => say([['Mum', `Eggs, Milo, bread, tissue AND Ah Gong's batteries! ${PL.name} so reliable.`], ['Ah Gong', 'My radio can play again! Tonight got Hokkien songs.']], () => { EQ.list = 3; sfx('thanks'); updUI(); }) });
+inter.push({ pos: () => new T.Vector3(HX + 1.0, 0, 6.4), r: 1.6, label: 'Put groceries on the table', ok: () => EQ.list === 2, act: () => say([['Mum', `Eggs, malt drink, bread, tissue AND Ah Gong's batteries! ${PL.name} so reliable.`], ['Ah Gong', 'My radio can play again! Tonight got Hokkien songs.']], () => { EQ.list = 3; sfx('thanks'); updUI(); }) });
 
 // ---- Kopi lingo: help Ah Seng serve orders
 const KOPI = { i: 0, score: 0, order: null, pick: {} };
-const KO = { base: ['Kopi', 'Teh', 'Milo'], milk: [['', 'Condensed milk'], ['C', 'Evaporated milk (C)'], ['O', 'No milk (O)']], sugar: [['', 'Normal'], ['siew dai', 'Less (siew dai)'], ['ga dai', 'More (ga dai)'], ['kosong', 'None (kosong)']], ice: [['', 'Hot'], ['peng', 'Iced (peng)']], take: [['', 'Drink here'], ['dabao', 'Takeaway (dabao)']] };
+const KO = { base: ['Kopi', 'Teh', ['Tak kiu', 'Tak kiu (choc malt)']], milk: [['', 'Condensed milk'], ['C', 'Evaporated milk (C)'], ['O', 'No milk (O)']], sugar: [['', 'Normal'], ['siew dai', 'Less (siew dai)'], ['ga dai', 'More (ga dai)'], ['kosong', 'None (kosong)']], ice: [['', 'Hot'], ['peng', 'Iced (peng)']], take: [['', 'Drink here'], ['dabao', 'Takeaway (dabao)']] };
 function newOrder() {
-  const base = oneOf(['Kopi', 'Kopi', 'Teh', 'Teh', 'Milo']); let milk = base === 'Milo' ? '' : oneOf(['', 'C', 'O', 'O']); let sugar = base === 'Milo' ? oneOf(['', 'siew dai']) : oneOf(['', 'siew dai', 'ga dai', 'kosong']);
+  const base = oneOf(['Kopi', 'Kopi', 'Teh', 'Teh', 'Tak kiu']); let milk = base === 'Tak kiu' ? '' : oneOf(['', 'C', 'O', 'O']); let sugar = base === 'Tak kiu' ? oneOf(['', 'siew dai']) : oneOf(['', 'siew dai', 'ga dai', 'kosong']);
   if (milk === '' && sugar === 'kosong') sugar = 'siew dai';
   const ice = oneOf(['', 'peng']), take = Math.random() < .3 ? 'dabao' : '';
   const say_ = [base + (milk ? '-' + milk : ''), sugar, ice, take].filter(Boolean).join(' ');
@@ -4589,8 +4589,8 @@ const ahGong = deco({ shirt: 0xf4f6f8, pants: 0x55606c, hair: 0xd9d9d9, skin: 0x
   table(30.4, 15.9, '#c0392b', '#c0392b', true); table(36, 15.6, '#2a4f9a', '#2a4f9a', false);
   const u1 = deco({ shirt: 0x4f8fd8, pants: 0x55606c, hair: 0xb9b9b9 }, 28.75, 15.5, PI / 2), u2 = deco({ shirt: 0xfff1d8, pants: 0x7a5a3c, hair: 0x4a4a4a, pattern: 'stripes', trim: 0x3a9f8a }, 32.05, 16.3, -PI / 2);
   chatNPC(u1, 'Uncle Hock', [['Chinese chess. Shh. I am thinking.'], ['These mosaic tables? Older than your mummy!']], false);
-  chatNPC(u2, 'Uncle Bala', [['He always takes ten minutes for one move.'], ['Find snacks around town. Ah Gong lets you play tikam.']], false);
-  inter.push({ pos: () => new T.Vector3(31.2, 0, 19.3), r: 1.9, label: 'Talk', ok: () => true, act: () => say([['Ah Gong', `Found any old-school snacks? You have ${SN.n} 🍬.`], ['Ah Gong', '2 snacks = 1 go at tikam-tikam. Or gift one to a neighbour on your 📱.']]) });
+  chatNPC(u2, 'Uncle Bala', [['He always takes ten minutes for one move.'], ['Find snacks around town. The snack shop uncle lets you play tikam.']], false);
+  inter.push({ pos: () => new T.Vector3(31.2, 0, 19.3), r: 1.9, label: 'Talk', ok: () => true, act: () => say([['Snack shop uncle', `Found any old-school snacks? You have ${SN.n} 🍬.`], ['Snack shop uncle', '2 snacks = 1 go at tikam-tikam. Or gift one to a neighbour on your 📱.']]) });
   inter.push({ pos: () => new T.Vector3(36.6, 0, 20.6), r: 1.7, label: '🎲 Tikam', ok: () => true, act: () => openTik() });
 }
 const TIK = { slots: [0, 1, 2, 3, 4, 5, 6, 7], open: new Set() };
@@ -4847,7 +4847,7 @@ $('strip').addEventListener('click', () => { if (started) openSgMap(false); });
     const r1 = addMesh(new T.ConeGeometry(3.6, 1.2, 4), lam(0xe8a51f), VX, 3.8, VZ); r1.rotation.y = PI / 4; const r2 = addMesh(new T.ConeGeometry(2.2, 1.2, 4), lam(0xe8a51f), VX, 4.9, VZ); r2.rotation.y = PI / 4; cyl(.12, .12, .5, red, VX, 5.7, VZ, 8, { cast: false }); nb_(VX - 1.3, VX + 1.3, .4, .48, VZ + 1.3, VZ + 1.7, red);
     // green hill behind
     const hill = addMesh(new T.SphereGeometry(16, 20, 10), M.leaf, 1662, -6, 58, { cast: false }); hill.scale.y = .7; for (const [x, z] of [[1640, 44], [1648, 12], [1672, 46], [1686, 34], [1640, 9.5]]) tree(x, z, 1);
-    { const g = deco({ shirt: 0xe8a51f, pants: 0x55606c, hair: 0xb9b9b9 }, 1657.4, 13.5, PI); chatNPC(g, 'Uncle Teck', [['Haw Par Villa. Opened 1937, built by the Tiger Balm brothers.'], ['Over a thousand statues inside. My Ah Ma brought me here to learn to behave!']]); }
+    { const g = deco({ shirt: 0xe8a51f, pants: 0x55606c, hair: 0xb9b9b9 }, 1657.4, 13.5, PI); chatNPC(g, 'Uncle Teck', [['Haw Par Villa. Opened 1937, built by two brothers, Aw Boon Haw and Aw Boon Par.'], ['Over a thousand statues inside. My Ah Ma brought me here to learn to behave!']]); }
   }
 
   /* --- Little India: the rainbow villa, shophouses, garland stall, street arch --- */
@@ -5094,7 +5094,7 @@ const THEN = { on: false, g: new T.Group() }; scene.add(THEN.g); THEN.g.visible 
   const saw = addMesh(new T.BoxGeometry(2.8, .08, .26), lam(0xffc94a), 31.6, .6, -34.6, P_); saw.rotation.z = .22; addMesh(new T.ConeGeometry(.3, .55, 4), red, 31.6, .28, -34.6, P_);
   // old bus stop: orange seats and a conductor
   for (let i = 0; i < 4; i++) addMesh(new T.BoxGeometry(.5, .08, .45), lam(0xf08a3c), 8.6 + i * .6, .5, -35.4, P_);
-  const ps = sign('BUS STOP\n~SBS 18 · 63\n~Fare 40¢', .7, .7, { bg: '#d7332b', fg: '#ffffff', sub: '#ffffff' }); ps.position.set(11.4, 2.3, -36.2); THEN.g.add(ps); addMesh(new T.CylinderGeometry(.04, .04, 2.6, 6), M.steel, 11.4, 1.3, -36.25, P_);
+  const ps = sign('BUS STOP\n~Services 18 · 63\n~Fare 40¢', .7, .7, { bg: '#d7332b', fg: '#ffffff', sub: '#ffffff' }); ps.position.set(11.4, 2.3, -36.2); THEN.g.add(ps); addMesh(new T.CylinderGeometry(.04, .04, 2.6, 6), M.steel, 11.4, 1.3, -36.25, P_);
   // viewing posts
   for (const [x, z, t] of [[18.3, -35.2, 'THEN & NOW\n~Playground'], [8.3, -36.3, 'THEN & NOW\n~Bus stop']]) { cyl(.07, .09, 1.2, M.dark, x, .6, z, 8); const b = addMesh(new T.BoxGeometry(.34, .2, .26), lam(0x2f8f7b), x, 1.3, z); signAt(t, .7, .34, { bg: '#fff6e5', fg: '#23324a' }, x, 1.72, z, 0); inter.push({ pos: () => new T.Vector3(x, 0, z + .6), r: 1.5, get label() { return THEN.on ? '🕰 Back to today' : '🕰 See 1985'; }, ok: () => true, act: toggleThen }); }
 }
@@ -5315,7 +5315,7 @@ const TOWN = { spent: 0, built: {}, unlock: {}, sig: null, seat: 0, dailyDone: 0
 const hearts = () => Object.values(NB).reduce((a, b) => a + (b.h || 0), 0), allWins = () => PLAY.wins + Object.values(MGK).reduce((a, b) => a + b, 0);
 const kpEarned = () => Q.thanks * 3 + hearts() + (KIND.s >= 2 ? 1 : 0) + (KIND.s >= 4 ? 2 : 0) + PLQ.size + WILD.size + TRAIL.size + Math.min(HAWK.shifts, 5) + allWins() + TOWN.dailyDone * 2 + (STORY.rahim >= 3 ? 3 : 0) + (STORY.ama ? 2 : 0);
 const kp = () => kpEarned() - TOWN.spent;
-const standing = () => { const e = kpEarned(); return e >= 32 ? 'Kampung hero' : e >= 18 ? 'Block regular' : e >= 8 ? 'Friendly face' : 'New neighbour'; };
+const standing = () => { const e = kpEarned(); return e >= 32 ? 'Kampung hero' : e >= 18 ? 'Block regular' : e >= 8 ? 'Friendly face' : 'Just starting'; };
 function hkRank() { return COLLECT.own.has('mg_hawk') ? 'Hawker legend' : HAWK.best >= 4 ? 'Neighbourhood favourite' : 'New hawker'; }
 const tg = () => { const g = new T.Group(); g.visible = false; scene.add(g); g.A = (geo, m, x, y, z) => { const me = new T.Mesh(geo, m); me.position.set(x, y, z); me.castShadow = true; g.add(me); return me; }; return g; };
 const PROJ = [
@@ -5385,7 +5385,7 @@ COLL.push({ id: 'st_photo', cat: 'Neighbour stories', n: 'The 1984 chess photo',
 HSTALL.kueh = { n: "Ah Ma's kueh", ic: '🍡', price: 3, base: [0, 1, 2], lock: "Ah Ma's story", ing: [['🐢', 'Ang ku kueh'], ['🟩', 'Kueh lapis'], ['🥥', 'Ondeh-ondeh'], ['🍵', 'Tea'], ['🍃', 'Leaf wrap']] };
 function storyRahim() { say([['Uncle Rahim', `${PL.name}, see this photo. 1984. That is me, and my chess kaki, Lim.`], ['Uncle Rahim', 'When our kampung was cleared, we got flats in different towns. No phone then. We lost each other.'], ['Uncle Rahim', 'Someone said an old man called Lim walks at the reservoir every morning. My knees cannot go so far…'], [PL.name, 'I will go and look, Uncle!']], () => { STORY.rahim = 1; TRACK = 'story'; updUI(); }); }
 function storyRahimEnd() { say([['Uncle Rahim', 'Lim?! After forty years! You still play the same bad opening!'], ['Mr Lim', 'And you still talk too much. Sit down, your move.'], ['Uncle Rahim', `${PL.name}, you gave an old man his friend back. Keep the photo. It belongs with you now.`]], () => { STORY.rahim = 3; COLLECT.own.add('st_photo'); heart('rahim', 2, 'Found my old friend Lim'); getSnack(2, 'old friends'); sfx('thanks'); updUI(); }); }
-function storyAma() { say([['Ah Ma Lim', 'You know, before these flats, Ah Ma had a kueh stall. Forty years, every morning at four.'], ['Ah Ma Lim', 'My hands are too old now. But a recipe should not sleep in a drawer.'], ['Ah Ma Lim', 'Take my book. Ang ku kueh, kueh lapis, ondeh-ondeh. Sell them at your stall, and tell people Ah Ma taught you.']], () => { STORY.ama = 1; TOWN.unlock.kueh = 1; COLLECT.own.add('st_book'); heart('ama', 1, 'Carries on my kueh'); sfx('thanks'); toast("🍡 Ah Ma's kueh unlocked at your stall", 3.2); updUI(); }); }
+function storyAma() { say([['Ah Ma Lim', 'You know, Ah Ma had a kueh stall at the old market. Forty years, every morning at four.'], ['Ah Ma Lim', 'My hands are too old now. But a recipe should not sleep in a drawer.'], ['Ah Ma Lim', 'Take my book. Ang ku kueh, kueh lapis, ondeh-ondeh. Sell them at your stall, and tell people Ah Ma taught you.']], () => { STORY.ama = 1; TOWN.unlock.kueh = 1; COLLECT.own.add('st_book'); heart('ama', 1, 'Carries on my kueh'); sfx('thanks'); toast("🍡 Ah Ma's kueh unlocked at your stall", 3.2); updUI(); }); }
 inter.push({ pos: () => mrLim.g.position, r: 2.4, label: 'Talk', ok: () => true, act: () => { if (STORY.rahim === 1) say([[PL.name, 'Excuse me, Uncle. Are you Mr Lim? Uncle Rahim from Block 88 is looking for you.'], ['Mr Lim', 'Rahim?! That rascal still owes me a rematch from 1984!'], ['Mr Lim', 'Block 88, you say. Wait for me, girl. I am coming.']], () => { STORY.rahim = 2; const r = npcs.rahim.c.g.position; mrLim.g.position.set(r.x + 1.5, r.y, r.z + .3); updUI(); }); else say([['Mr Lim', STORY.rahim >= 3 ? 'Every evening now, chess with Rahim. He still cannot beat me.' : 'Morning walk keeps the legs young. Look, the otters are out.']]); } });
 const _talk3 = talkTo;
 talkTo = function (k) {
@@ -5952,7 +5952,7 @@ function deepCamera() {
 const party = tg(), partyFolk = [], LEG = {};
 { const wh = lam(0xfaf6ee), red = lam(0xd7332b);
   for (const x of [-6.5, 8.5]) party.A(new T.CylinderGeometry(.07, .07, 4.2, 8), M.steel, x, 2.1, -12.4);
-  const bn = sign('BLK 88 · 40 YEARS\n~1986 – 2026 · Thank you, neighbours', 7, 1.2, { bg: '#d7332b', fg: '#ffffff', sub: '#ffe9a0', screws: false, glow: true }); bn.position.set(1, 3.5, -12.4); party.add(bn); { const b2 = sign('BLK 88 · 40 YEARS\n~Party tonight · Everybody welcome', 7, 1.2, { bg: '#d7332b', fg: '#ffffff', sub: '#ffe9a0', screws: false, glow: true }); b2.position.set(1, 3.5, -12.52); b2.rotation.y = PI; party.add(b2); }
+  const bn = sign('BLK 88 · 40 YEARS\n~1985 – 2025 · Thank you, neighbours', 7, 1.2, { bg: '#d7332b', fg: '#ffffff', sub: '#ffe9a0', screws: false, glow: true }); bn.position.set(1, 3.5, -12.4); party.add(bn); { const b2 = sign('BLK 88 · 40 YEARS\n~Party tonight · Everybody welcome', 7, 1.2, { bg: '#d7332b', fg: '#ffffff', sub: '#ffe9a0', screws: false, glow: true }); b2.position.set(1, 3.5, -12.52); b2.rotation.y = PI; party.add(b2); }
   for (let k = 0; k < 30; k++) { const f = party.A(new T.ConeGeometry(.16, .34, 3), lam([0xd7332b, 0xffc94a, 0x2f8f7b, 0x4f8fd8, 0xf2a6b8][k % 5]), -6.5 + k * .5, 4.05 - Math.sin(k / 29 * PI) * .5, -12.4); f.rotation.x = PI; f.castShadow = false; }
   for (let k = 0; k < 24; k++) for (const z of [-6.2]) party.A(new T.SphereGeometry(.1, 6, 5), basic([0xffe9a0, 0xffc94a, 0xff8f6f][k % 3]), -6 + k * .6, 2.9 - Math.sin(k / 23 * PI) * .45, z).castShadow = false; for (const x of [-6, 7.8]) party.A(new T.CylinderGeometry(.04, .04, 2.9, 6), M.steel, x, 1.45, -6.2);
   for (const x of [-3.4, 5]) { party.A(new T.BoxGeometry(3.4, .06, 1), wh, x, .8, -10.6); for (const dx of [-1.5, 1.5]) party.A(new T.BoxGeometry(.06, .78, .9), M.steel, x + dx, .39, -10.6); for (let k = 0; k < 5; k++) { party.A(new T.CylinderGeometry(.2, .2, .03, 12), wh, x - 1.3 + k * .65, .85, -10.6).castShadow = false; party.A(new T.SphereGeometry(.11, 8, 5, 0, PI * 2, 0, PI / 2), lam([0xd7332b, 0x8fd16b, 0xe9b949, 0xb98a5a, 0xf2a6b8][(k + (x > 0 ? 2 : 0)) % 5]), x - 1.3 + k * .65, .86, -10.6).castShadow = false; } }
@@ -6396,7 +6396,7 @@ const RMORE = {
     { s: 0, ic: '📦', t: 'Cardboard from the shops', where: 'Blk 87 five-foot way', p: [2, 0, 14.2], label: '📯 Honk and collect', run: d => { sfx('horn'); rSay('Provision shop auntie', ['Karung guni! Good, good. Ten boxes, flat already.', ['Karung guni uncle', 'You flatten for me every week. Other shops I have to stamp on them myself.'], 'You come every week. Fair is fair.'], d); }, L: ['The town council cleaner has started clearing the boxes.', 'Provision shop auntie', 'Aiyo, the cleaner took half already! Quick, the rest is yours.'] },
     { s: 0, ic: '🧵', t: 'A round at the kampung', where: 'Kampung Tembusu', p: [-108, 0, 19.2], label: '📯 Honk and collect', run: d => { sfx('horn'); rAsk('Pak Din', 'Karung guni! This old sewing machine, the foot-pedal kind. You want?', [['Yes! Collectors love these', true, 'Good. My late wife sewed all the children\'s school uniforms on it. Find it a good home.'], ['No, too heavy for the cart', false, 'Too heavy? I thought you carry anything. Think again!']], d); }, L: ['Pak Din has gone to the canal to cast his net.', 'Pak Din', 'I waited, then the tide was right. Come, the machine is still on the verandah.'] },
     { s: 1, ic: '📺', t: 'An old TV at the CC', where: 'Community Club', p: [95.6, 0, 22.6], label: '📯 Honk and collect', run: d => { sfx('horn'); rAsk('Mdm Chua', 'This old TV from the activity room. Can it go down the rubbish chute?', [['No. I take it. E-waste must be recycled properly', true, 'That is what I told them! Thank you. The parts get a second life.'], ['Yes, just throw it', false, 'Really? The glass, the metals... think again.']], d); }, L: ['Mdm Chua nearly called the bulky-item removal men.', 'Mdm Chua', 'One more minute and I pay somebody thirty dollars to take it! You take it for free, right?'] },
-    { s: 1, ic: '♻️', t: 'Sort the load', where: 'By the snack shop', p: [31.6, 0, 12.4], label: '♻️ Sort the load', run: d => rSteps('♻️ Sorting', 'Karung guni uncle', 'Mixed loads fetch half the price. Tap in order!', [['📰', 'Paper together'], ['🥫', 'Cans together'], ['👕', 'Clothes in the sack'], ['📻', 'Electronics on top']], 2, d), L: ['The pile on the cart is starting to slide.', 'Ah Gong', 'Oi! Your cart is going to tip over in front of my shop!'] },
+    { s: 1, ic: '♻️', t: 'Sort the load', where: 'By the snack shop', p: [31.6, 0, 12.4], label: '♻️ Sort the load', run: d => rSteps('♻️ Sorting', 'Karung guni uncle', 'Mixed loads fetch half the price. Tap in order!', [['📰', 'Paper together'], ['🥫', 'Cans together'], ['👕', 'Clothes in the sack'], ['📻', 'Electronics on top']], 2, d), L: ['The pile on the cart is starting to slide.', 'Snack shop uncle', 'Oi! Your cart is going to tip over in front of my shop!'] },
     { s: 2, ic: '🚚', t: 'Sell to the recycler', where: 'Lorry, Tembusu Interchange', p: [79, 0, -19.6], label: '🚚 Sell the load', run: d => rAsk('Recycler', 'Old clothes, 8 kilos. Fifty cents a kilo. How much do I owe you?', [['$4.00', true, 'Four dollars. Same time next week, old friend.'], ['$8.50', false, 'Nice try! Eight times fifty cents.'], ['$40.00', false, 'Forty! I wish. Eight times fifty cents.']], d), L: ['Rain! The newspapers on the cart are getting wet.', 'Recycler', 'Wet paper weighs more, but I pay less for it. Sorry, old friend.'], fx: 'rain' },
     { s: 2, ic: '🏮', t: 'Boxes from the pasar malam', where: 'Pasar malam field', p: [-62.2, 0, -31.4], label: '📯 Collect the boxes', run: d => { sfx('horn'); rSay('Game stall boss', ['Karung guni! Take all the cartons, please. The prizes came in forty boxes.', ['Karung guni uncle', 'Forty boxes, and I get a teddy bear also?'], 'Haha! Toss one ring. If it lands, the bear is yours.'], () => { learn('pasar'); d(); }); }, L: ['The stall holders are burning time waiting to pack up.', 'Game stall boss', 'Uncle, we want to go home! Boxes are behind the stall, faster, faster.'] }
   ]
@@ -6714,7 +6714,7 @@ REALC.guppy = ['🐟 Longkang fishing', 'Children once scooped guppies from the 
   for (let i = 0; i < 4; i++) { for (const dz of [0, .7]) xC(88 + i * .7, .4, 19.6 + dz, .025, .8, 0xc4ccd4); xC(88 + i * .7, .8, 19.95, .025, .72, 0xc4ccd4, 0, PI / 2); }
   for (const x of [100.4, 111]) { xB(x - .9, x + .9, .4, .47, 21.2, 21.7, 0x9b6a43); for (const dx of [-.75, .75]) xB(x + dx - .04, x + dx + .04, 0, .4, 21.25, 21.65, 0x8d949b); solids.push({ x1: x - .9, x2: x + .9, y1: 0, y2: .47, z1: 21.2, z2: 21.7 }); }
   const chua = deco({ shirt: 0x3a9f8a, pants: 0x3a3a5a, hair: 0x4a4a4a, hairStyle: 'bun', glasses: true }, 102.4, 24.4, PI);
-  chatNPC(chua, 'Mdm Chua', [['Welcome to the CC! I am a volunteer here, twenty years. Sign up for something lah.'], ['Courts are free before five. After five must book, the uncles are very fierce about their slot.'], ['Block party this Saturday. Every family brings one dish. Last year we had forty dishes and no rice!']]);
+  chatNPC(chua, 'Mdm Leong', [['Welcome to the CC! I am a volunteer here, twenty years. Sign up for something lah.'], ['Courts are free before five. After five must book, the uncles are very fierce about their slot.'], ['Block party this Saturday. Every family brings one dish. Last year we had forty dishes and no rice!']]);
   [[98, 22.6], [100, 23.3], [102, 22.6]].forEach(([x, z], i) => { const c = deco({ shirt: [0xfaf6ee, 0xf2a6b8, 0x9ec7e8][i], pants: 0x3a3a5a, hair: i ? 0x8f8f8f : 0xcfcfcf, hairStyle: i === 1 ? 'bun' : undefined }, x, z, PI, { exercise: true }); c.g.visible = false; ROUT.morning.push(c); });
   xFind('carrom', 'Carrom board', '#c98a3c', 'A carrom board left on the bench, the powder still on it. Flick the striker, pocket the queen, argue about the rules.', [111, 0, 20.6], 'Community Club');
 }
@@ -7153,7 +7153,7 @@ const CREQ = {
     steps: () => ['Fill the watering can · tap by the east lawn', `Water the planters (${wN()}/4)`, 'Tell Encik Hamid · east lawn', CD],
     start: () => { CARE.wet = [false, false, false, false]; CARE.can = 0; wSet(); },
     obj: () => { if (CARE.st === 0) return [cV(14.6, 0, -7.5), '🚰 Tap by the path']; if (CARE.st === 2) return [hamid.g.position, 'Encik Hamid · east lawn']; const s = WPL.filter((_, i) => !CARE.wet[i]).sort((a, b) => cNear(a[0], a[1]) - cNear(b[0], b[1]))[0]; return s ? [cV(s[0], 0, s[1]), '🌿 Planter'] : null; } },
-  card: { ic: '💌', n: 'A card for Uncle Samy', from: 'Mdm Wong, void deck', note: 'I wrote a thank-you card for Uncle Samy, who keeps the park path clean. My wheelchair cannot manage the slope. Will you bring it?', col: '#ffd6e0',
+  card: { ic: '💌', n: 'A card for Uncle Samy', from: 'Mdm Wong, void deck', note: 'I wrote a thank-you card for Uncle Samy, who keeps the park path clean. My wheelchair cannot manage the slope. Will you bring it? (Nurse Joanne pinned this up for me.)', col: '#ffd6e0',
     steps: () => ['Choose a sticker for the card', 'Bring the card to Uncle Samy · park gate', CD],
     start: () => { CARE.v = {}; const pk = (k, w) => () => { CARE.v.sticker = k; CARE.st = 1; updUI(); toast(`${w} stuck on. Uncle Samy is at the park gate.`, 2.8); };
       choose('💌 Mdm Wong\'s card', 'The card says "Thank you for our clean park." It needs one sticker. Which one?', [['🌻 A sunflower', pk('sun', '🌻 Sunflower')], ['🐦 A little blue bird', pk('bird', '🐦 Bird')], ['⭐ A gold star', pk('star', '⭐ Gold star')]]); },
@@ -7281,7 +7281,7 @@ function nbOpen() { if (!started) return; if (!lvCan(2)) { say([[PL.name, 'So ma
 function nbClose() { $('nbM').hidden = true; DEEP.careOpen = false; }
 function kjDraw() {
   $('kjH').textContent = `📖 ${PL.name}'s kindness journal`;
-  $('kjS').innerHTML = `<span>🙏 Thank-Yous ${Q.thanks}/4</span><span>🤝 Helping hands ${CARE.hands}</span><span>👆 Discovered ${CARE.taps.size}/${TAPS.length}</span><span>🤝 Introductions ${Object.keys(KAKI.pairs).length}/4</span>`;
+  $('kjS').innerHTML = `<span>📅 Day ${WORLD.day}</span><span>🙏 Thank-Yous today ${Q.thanks}/4</span><span>🤝 Helping hands ${CARE.hands}</span><span>👆 Discovered ${CARE.taps.size}/${TAPS.length}</span><span>🤝 Introductions ${Object.keys(KAKI.pairs).length}/4</span>`;
   const L = DEEP.log.slice(-24).reverse();
   $('kjG').innerHTML = L.length ? L.map((m, i) => `<div class="kjc" style="--r:${[-1.6, 1.1, -.6, 1.7, -1.1][i % 5]}deg"><i>${m.ic}</i><b>${m.title}</b><p>${m.line}</p></div>`).join('') : '<p class="kjempty">Nothing here yet. Help a neighbour, or read the 📌 noticeboard at the void deck, and the first page fills in.</p>';
   $('kjW').innerHTML = kkJournalHTML();
@@ -7314,15 +7314,15 @@ function stepCare(dt) {
 }
 if (window.__TEST) window.__CARE = { CARE, CREQ, CORDER, careStart, careDone, careList, nbOpen, nbClose, nbDraw, kjOpen, kjClose, kjDraw, careLift, TAPS, RX, rxApply, stepCare, recNext, careReal, careRealDone, chua, hamid, samy, kai, mochi, WPL, CATS };
 
-// ===== growing with the community: seven levels from New Neighbour to Heart of Tembusu, and bigger things to do for more people at each one
+// ===== growing with the community: seven levels from Quiet Neighbour to Heart of Tembusu, and bigger things to do for more people at each one
 const LVL = [
-  { n: 'New Neighbour', ic: '🚪', at: 0, scope: 'Your corridor', can: 'Run errands for the four neighbours you know.', get: 'A home in Block 88.' },
+  { n: 'Quiet Neighbour', ic: '🚪', at: 0, scope: 'Your corridor', can: 'Run errands for the four neighbours you know.', get: 'A home on the twelfth storey, and a hello in the lift.' },
   { n: 'Good Neighbour', ic: '🤝', at: 12, scope: 'Your block', can: 'Take notes from the 📌 noticeboard: small favours for anyone in the block.', get: '⭐ 2 for town projects. Neighbours start to greet you by name.' },
   { n: 'Block Volunteer', ic: '🧹', at: 36, scope: 'The whole block', can: 'Lead a void deck clean-up, and invite neighbours to share the work.', get: 'A volunteer lanyard. The board shows 4 notes. Each helping hand earns ⭐ 2.' },
   { n: 'Block Captain', ic: '🎪', at: 70, scope: 'The whole block', can: 'Organise a get-together for Block 88. You choose what kind.', get: "A captain's visor. A watering can twice the size. The board shows all 5 notes." },
   { n: 'Estate Committee', ic: '📦', at: 110, scope: 'Tembusu Estate', can: 'Run a food donation drive across the whole estate.', get: '⭐ 5 committee budget. Each helping hand earns ⭐ 3.' },
   { n: 'Community Leader', ic: '🗳', at: 160, scope: 'Tembusu Estate', can: "Hold a residents' meeting and get something new built. You propose what.", get: '⭐ 8 budget and a gold lanyard.' },
-  { n: 'Heart of Tembusu', ic: '💛', at: 220, scope: 'The whole town', can: 'Start Tembusu Day: lanterns and fireworks for everybody.', get: 'Fireworks whenever you like, and the whole estate knows your name.' }
+  { n: 'Heart of Tembusu', ic: '💛', at: 220, scope: 'The whole town', can: 'Bring back Lights Night: a lantern on every corridor, and fireworks for the whole town.', get: 'Fireworks whenever you like, and the whole estate knows your name.' }
 ];
 // one-time tidy-up: preview runs of this build left test progress in the browser's saved data
 try { if (!localStorage.getItem('b88_fix1')) { const s0 = JSON.parse(localStorage.getItem('b88_level') || '{}'); if ((s0.seen || 1) >= 5) localStorage.removeItem('b88_level'); localStorage.removeItem('b88_kaki'); localStorage.setItem('b88_fix1', '1'); } } catch (_) {}
@@ -7372,7 +7372,7 @@ const gProp = { library: tg(), garden: tg(), court: tg() };
   const C0 = gProp.court; gA(C0, 'b', 14.5, .045, -4.1, 5.2, .02, 2.8, 0x3a7ca5); for (let i = 0; i < 8; i++) gA(C0, 'b', 12.5 + i * .58, .062, -4.1 + (i % 3 === 1 ? .32 : i % 3 === 2 ? -.32 : 0), .52, .02, .52, [0xffc94a, 0xf2a6b8, 0x7fd1b9, 0xf4f1ea][i % 4]); for (let i = 0; i < 4; i++) gA(C0, 'c', 13 + i * 1.1, .062, -5.1, .5, .02, .5, [0xd7332b, 0xffc94a, 0x4e9a48, 0xf4f1ea][i]); gA(C0, 'b', 14.5, .062, -2.9, 4.6, .02, .08, 0xffffff); }
 const PROP = { library: ['📚', 'Little library corner', 'Take a book, leave a book.', { chua: 'A book corner! I will bring my old cookbooks. Mochi can sit on the mat.', hamid: 'Put a bench. My knees like to read sitting down.', samy: 'Good. Books do not need watering.', kai: 'Can I leave my comics there? Then everybody can read them.' }], garden: ['🦋', 'Butterfly garden', 'Flowers the butterflies like, on the west lawn.', { chua: 'Butterflies! Mochi will go crazy. Plant ixora, they love the red ones.', hamid: 'I have seeds. Lantana, ixora, blue pea. Leave the planting plan to me.', samy: 'Finally somebody asks the gardener. Yes. One hundred times yes.', kai: 'Will there be caterpillars? I want to count the caterpillars.' }], court: ['🎨', 'Painted games court', 'Hopscotch and a chapteh ring, painted on the ground.', { chua: 'Last time we drew hopscotch with chalk and the rain washed it away. Paint is better.', hamid: 'Paint the lines bright. Old eyes need bright lines.', samy: 'Outside my park, so no sweeping for me. I vote yes.', kai: 'YES. Put a chapteh ring. I will practise every day.' }] };
 
-// 5. Tembusu Day
+// 5. Lights Night
 const gFest = tg(); for (let r = 0; r < 3; r++) for (let i = 0; i < 14; i++) { const u = i / 13, x = -10 + u * 26, z = -2.2 - r * 1.9, y = 3.0 - Math.sin(u * PI) * .45 - r * .05; const m = gFest.A(LG.s, basic([0xffd27a, 0xff8a65, 0xfff2b0, 0xffb347][(i + r) % 4]), x, y, z); m.scale.set(.26, .32, .26); }
 
 /* ---------- the five bigger projects ---------- */
@@ -7395,7 +7395,7 @@ const BIGS = {
     start: () => { BIG.v = { asked: {} }; const ks = Object.keys(PROP).filter(k => !LV.big['meet_' + k]), pk = k => () => { BIG.v.kind = k; BIG.st = 1; updUI(); toast(`${PROP[k][0]} ${PROP[k][1]}. Ask three neighbours what they think.`, 3.2); };
       choose("🗳 Residents' meeting", 'What will you propose for Tembusu Estate?', (ks.length ? ks : Object.keys(PROP)).map(k => [`${PROP[k][0]} ${PROP[k][1]}`, pk(k)])); },
     obj: () => { if (BIG.st === 1) { const k = Object.keys(LNPC).filter(q => !BIG.v.asked[q]).sort((a, b) => P.p.distanceTo(LNPC[a][1]().g.position) - P.p.distanceTo(LNPC[b][1]().g.position))[0]; return k ? [LNPC[k][1]().g.position, `🗳 Ask ${LNPC[k][0]}`] : null; } return BIG.st === 2 ? [cV(1.4, 0, -5.9), '🗳 Beside the noticeboard'] : null; } },
-  fest: { lv: 7, ic: '🎆', n: 'Tembusu Day', note: 'Lanterns across the block, fireworks over the estate, everybody downstairs. You have earned the right to start it.',
+  fest: { lv: 7, ic: '🎆', n: 'Lights Night', note: 'A lantern on every corridor, fireworks over the estate, everybody downstairs. Nobody has done it since 1985. You have earned the right to start it.',
     steps: () => ['Light the first lantern · beside the noticeboard', CD], start: () => { BIG.v = {}; }, obj: () => BIG.st === 0 ? [cV(1.4, 0, -5.9), '🎆 Beside the noticeboard'] : null }
 };
 function bigKey() { return BIG.cur === 'party' || BIG.cur === 'meet' ? `${BIG.cur}_${BIG.v.kind}` : BIG.cur; }
@@ -7419,13 +7419,13 @@ LPOST.forEach(([x, z, where, ry], i) => { inter.push({ pos: () => cV(x, 0, z), r
   BIG.v.posts[i] = true; sfx('tap'); const e = EVT[BIG.v.kind]; if (!gPost[i]) { const g = tg(); gA(g, 'b', x - .28, .6, z, .05, 1.2, .05, 0x7a5a3a); gA(g, 'b', x + .28, .6, z, .05, 1.2, .05, 0x7a5a3a); gPost[i] = g; } if (gPost[i].sg) gPost[i].remove(gPost[i].sg); const m = signAt(e[2], .7, .55, { bg: '#ffc94a', fg: '#23324a' }, x, .95, z + (ry ? -.05 : .05), ry); gPost[i].add(m); gPost[i].sg = m; gPost[i].visible = true;
   const n = BIG.v.posts.filter(Boolean).length; if (n >= 3) { BIG.st = 2; toast('📌 Three posters up. Now invite three neighbours in person. That works better than any poster.', 3.6); } else toast(`📌 Poster up at ${where}. ${n}/3`, 2.2); updUI(); } }); });
 inter.push({ pos: () => cV(-15.5, 0, -1.9), r: 2.2, label: '🎪 Open the evening', ok: () => BIG.cur === 'party' && BIG.st === 3, act: () => fadeDo(() => { const k = BIG.v.kind, e = EVT[k]; for (const q in gEvt) gEvt[q].visible = q === k; gBunt.visible = true; lvGather([[-17.1, -2.2, PI], [-14.7, -2.1, PI], [-13.4, -4.7, -PI / 2], [-17.9, -3.9, PI / 2]]); SET.time = 'evening'; applySky(); P.p.set(-15.5, 0, -1.2); cam.yaw = 0;
-  say([['Block 88', e[3]], ['Uncle Rahim', `Thirty years I live here. First time I see so many doors open at once. Thank you, ${PL.name}.`]], () => bigDone(e[1], `You organised it. ${e[3]}`)); }) });
+  say([['Block 88', e[3]], ['Uncle Rahim', `Forty years I live here. Long time since I saw so many doors open at once. Thank you, ${PL.name}.`]], () => bigDone(e[1], `You organised it. ${e[3]}`)); }) });
 inter.push({ pos: () => cV(12.7, 0, 4.5), r: 1.7, label: '🗑 Tie up the bags', ok: () => BIG.cur === 'clean' && BIG.st === 1, act: () => { const n = Object.keys(BIG.v.asked).length; gAward.visible = true;
   say([[PL.name, n ? `Twelve pieces, ${n + 1} pairs of hands. That was fast!` : 'Twelve pieces, all by myself. Next time I will ask the neighbours.'], ['Town council officer', 'Block 88 did this themselves? You get this month\'s Clean Block Award. I will put up the sign and some flower pots.']], () => bigDone('Void deck clean-up', n ? `${n} neighbour${n > 1 ? 's' : ''} joined you. Many hands, light work.` : 'You cleaned the whole block on your own.')); } });
 LBOX.forEach(b => inter.push({ pos: () => cV(b.x, 0, b.z - .9), r: 1.9, label: '📦 Set up a donation box', ok: () => BIG.cur === 'drive' && BIG.st === 0 && !b.set, act: () => { b.set = true; b.g.visible = true; sfx('tap'); setTimeout(() => { b.f.visible = true; }, window.__TEST ? 0 : 1200); const n = LBOX.filter(q => q.set).length; if (n >= 3) BIG.st = 1; updUI(); toast(`📦 ${b.line}${n >= 3 ? ' All three are filling up. Take them to the Community Club!' : ''}`, 3.8); } }));
-inter.push({ pos: () => cV(97, 0, 21.5), r: 2.4, label: '📦 Hand over the donations', ok: () => BIG.cur === 'drive' && BIG.st === 1, act: () => { gStack.visible = true; say([['CC volunteer', 'Three full boxes from one estate drive! These go to forty households by this evening.'], ['CC volunteer', 'You know what the best part is? Half the people who gave will ask how to help next time.']], () => bigDone('Estate food drive', 'Three boxes, forty households, one estate looking after its own.')); } });
+inter.push({ pos: () => cV(97, 0, 21.5), r: 2.4, label: '📦 Hand over the donations', ok: () => BIG.cur === 'drive' && BIG.st === 1, act: () => { gStack.visible = true; say([['Mdm Leong', 'Three full boxes from one estate drive! These go to forty households by this evening.'], ['Mdm Leong', 'You know what the best part is? Half the people who gave will ask how to help next time.']], () => bigDone('Estate food drive', 'Three boxes, forty households, one estate looking after its own.')); } });
 inter.push({ pos: () => cV(1.4, 0, -5.9), r: 1.8, get label() { return BIG.cur === 'fest' ? '🎆 Light the first lantern' : '🗳 Hold the meeting'; }, ok: () => (BIG.cur === 'meet' && BIG.st === 2) || (BIG.cur === 'fest' && BIG.st === 0), act: () => {
-  if (BIG.cur === 'fest') { fadeDo(() => { lvFest(true); say([['Block 88', 'One lantern, then twenty, then every corridor. Fireworks bloom over Tembusu.'], ['Ah Ma Lim', `When ${PL.name} moved in, nobody knew her name. Now look.`]], () => bigDone('Tembusu Day', 'You lit the first lantern. The whole estate came downstairs.')); }); return; }
+  if (BIG.cur === 'fest') { fadeDo(() => { lvFest(true); say([['Block 88', 'One lantern, then twenty, then every corridor. Fireworks bloom over Tembusu.'], ['Ah Ma Lim', `Ten years this girl lived upstairs, and half of us never knew her name. Now look. Everybody said yes.`]], () => bigDone('Lights Night', 'You lit the first lantern. The whole estate came downstairs.')); }); return; }
   const k = BIG.v.kind, p = PROP[k]; say([[PL.name, `Neighbours, I would like to propose a ${p[1].toLowerCase()}. ${p[2]}`], ['Town council officer', 'All in favour, hands up. ... Thirty-one hands. One paw. Motion carried!']], () => fadeDo(() => { gProp[k].visible = true; bigDone(p[1], `Your idea, the neighbours' votes. ${p[2]}`); })); } });
 function lvFest(on) { LV.fest = on; gFest.visible = on; if (on) { SET.time = 'evening'; applySky(); lvGather([[2.2, -6.6, 0], [6.9, -6.4, 0], [-1.2, -5.9, .4], [9.2, -5.6, -.4]]); } else lvHome(); }
 
@@ -7466,11 +7466,11 @@ function lvUp(n) { const l = LVL[n - 1], nx = LVL[n]; if (window.__TEST && !LV.t
   $('lvUI').textContent = l.ic; $('lvUW').textContent = `${LVL[n - 2].n}  →  Level ${n}`; $('lvUT').textContent = l.n; $('lvUC').textContent = l.can; $('lvUG').textContent = l.get; $('lvUN').textContent = nx ? `Next: ${nx.ic} ${nx.n}, when you reach ${nx.at} 💛.` : 'This is the top. Tembusu is brighter because of you.';
   DEEP.careOpen = true; $('lvU').hidden = false; sfx('ding'); setTimeout(() => sfx('thanks'), 350); nowConfetti(); try { $('lvChip').classList.add('up'); setTimeout(() => $('lvChip').classList.remove('up'), 3200); } catch (_) {} }
 function lvBoardHTML() { return '<p class="nbh">🏢 Bigger things, for more people</p><div class="nbbig">' + Object.keys(BIGS).map(k => { const b = BIGS[k], ok = lvCan(b.lv), now = BIG.cur === k && BIG.st < b.steps().length - 1, done = k === 'party' || k === 'meet' ? Object.keys(LV.big).filter(q => q.startsWith(k + '_')).length : LV.big[k] ? 1 : 0;
-  return ok ? `<div><b>${b.ic} ${b.n}</b>${b.note}<small>${done ? `✓ Done${k === 'party' || k === 'meet' ? ` ${done} of 3 kinds` : ''}. You can do it again.` : 'First time: 💛 +20'}</small><button data-big="${k}" class="${now ? 'now' : ''}">${now ? 'Doing this now' : k === 'fest' && LV.fest ? 'End Tembusu Day' : done ? 'Do it again' : "Let's do it"}</button></div>` : `<div class="lock"><b>🔒 ${b.ic} ${b.n}</b>Opens at level ${b.lv}: ${LVL[b.lv - 1].n}.</div>`; }).join('') + '</div>'; }
+  return ok ? `<div><b>${b.ic} ${b.n}</b>${b.note}<small>${done ? `✓ Done${k === 'party' || k === 'meet' ? ` ${done} of 3 kinds` : ''}. You can do it again.` : 'First time: 💛 +20'}</small><button data-big="${k}" class="${now ? 'now' : ''}">${now ? 'Doing this now' : k === 'fest' && LV.fest ? 'End Lights Night' : done ? 'Do it again' : "Let's do it"}</button></div>` : `<div class="lock"><b>🔒 ${b.ic} ${b.n}</b>Opens at level ${b.lv}: ${LVL[b.lv - 1].n}.</div>`; }).join('') + '</div>'; }
 function lvBoardClick(k) { if (k === 'fest' && LV.fest) { lvFest(false); toast('The lanterns come down. Until next year!', 2.6); return; } if (BIG.cur === k && BIG.st < BIGS[k].steps().length - 1) { TRACK = 'big'; NOW.done = null; updUI(); return; } bigStart(k); }
 try { $('lvChip').addEventListener('click', lvOpen); $('mLv').addEventListener('click', lvOpen);
   $('lvM').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; if (b.id === 'lvX') lvClose(); else if (b.id === 'lvW' && LV.seen >= 3) { LV.wear = !LV.wear; lvSave(); try { if (!DEEP.role) rebuildPlayer(); } catch (_) {} lvDraw(); } });
-  $('lvUX').addEventListener('click', () => { $('lvU').hidden = true; DEEP.careOpen = false; const n = LV.seen; toast(n === 2 ? '📌 The noticeboard in front of the lift lobby is open to you now.' : n === 7 ? '🎆 Start Tembusu Day at the noticeboard whenever you like.' : `📌 Something new is waiting on the noticeboard: ${BIGS[Object.keys(BIGS)[n - 3]].n}.`, 4.2); lvChip(); }); } catch (_) {}
+  $('lvUX').addEventListener('click', () => { $('lvU').hidden = true; DEEP.careOpen = false; const n = LV.seen; toast(n === 2 ? '📌 The noticeboard in front of the lift lobby is open to you now.' : n === 7 ? '🎆 You can bring back Lights Night from the noticeboard whenever you like.' : `📌 Something new is waiting on the noticeboard: ${BIGS[Object.keys(BIGS)[n - 3]].n}.`, 4.2); lvChip(); }); } catch (_) {}
 function stepLevel(dt) {
   if (!started) return; LV.t += dt; LV.q = dlg || DEEP.careOpen ? 0 : (LV.q || 0) + dt;
   if (LV.fly && gProp.garden.visible) LV.fly.forEach((m, i) => { const a = elapsed * (.7 + i * .13) + i * 2; m.position.set(-6 + Math.cos(a) * (1.4 + i * .25), .9 + Math.sin(a * 2.3 + i) * .3, -12.2 + Math.sin(a) * .9); m.rotation.set(Math.sin(elapsed * 14 + i) * .7, a, 0); });
@@ -7490,26 +7490,26 @@ try { const s = JSON.parse(localStorage.getItem('b88_kaki') || '{}'); KAKI.pairs
 const kkSave = () => { try { localStorage.setItem('b88_kaki', JSON.stringify({ pairs: KAKI.pairs, stories: KAKI.stories, helped: KAKI.helped })); } catch (_) {} };
 const kkXP = () => Object.keys(KAKI.pairs).length * 15 + KAKI.stories.length * 6 + KAKI.stories.filter(s => s.told).length * 2;
 const LON = {
-  lim: { n: 'Uncle Lim', ic: '♟', topic: 'chess', partner: 'samy', pn: 'Uncle Samy', hw: 'front lawn', pw: 'park gate', home: [9.3, -10.4, 0], to: [6.95, 41.3, -1.1], pp: [5.9, 39.3, PI],
+  lim: { n: 'Uncle Sim', ic: '♟', topic: 'chess', partner: 'samy', pn: 'Uncle Samy', hw: 'front lawn', pw: 'park gate', home: [9.3, -10.4, 0], to: [6.95, 41.3, -1.1], pp: [5.9, 39.3, PI],
     look: { shirt: 0xf4f1ea, trim: 0x8d949b, pants: 0x5b5b5b, skin: 0xe0b48a, hair: 0xd9d9d9, shortHair: true, glasses: true, slippers: true },
-    wish: ['I set up the board every morning. Red side, black side. Then I play both sides myself.', 'My old chess kaki moved to his son\'s place in Punggol. Nobody else here plays xiangqi.'], short: 'someone to play chess with', tell: 'He plays Chinese chess against himself every morning.',
-    q: 'Who would sit down to a game of Chinese chess with Uncle Lim?', wrong: { kai: 'Kai only knows snakes and ladders. Somebody older, who takes a quiet tea break every day?', chua: 'Mdm Chua says chess makes her sleepy. Somebody who works outdoors and rests at tea time?' },
-    ask: ['Xiangqi? I played every night at the old kopitiam, before it closed!', 'Tell him: tea break, three o\'clock, park gate. I bring the kopi, he brings the board.'],
-    meet: [['Uncle Samy', 'You take red, I take black. Loser sweeps the leaves.'], ['Uncle Lim', 'Then you had better keep your broom ready.'], ['Uncle Samy', 'Hah! I like him already.']],
+    wish: ['I set up the board every morning. Red side, black side. Then I play both sides myself.', 'My old chess kaki moved to his son\'s place in Punggol. Rahim plays the other chess, with kings and queens. Mine has cannons and elephants. Nobody else here plays xiangqi.'], short: 'someone to play chess with', tell: 'He plays Chinese chess against himself every morning.',
+    q: 'Who would sit down to a game of Chinese chess with Uncle Sim?', wrong: { kai: 'Kai only knows snakes and ladders. Somebody older, who takes a quiet tea break every day?', chua: 'Mdm Chua says chess makes her sleepy. Somebody who works outdoors and rests at tea time?' },
+    ask: ['Xiangqi? I played every night at the kopitiam in my old estate!', 'Tell him: tea break, three o\'clock, park gate. I bring the kopi, he brings the board.'],
+    meet: [['Uncle Samy', 'You take red, I take black. Loser sweeps the leaves.'], ['Uncle Sim', 'Then you had better keep your broom ready.'], ['Uncle Samy', 'Hah! I like him already.']],
     memo: 'They play xiangqi at the park gate every tea break now. Loser sweeps.', after: 'Three games to two. He thinks he is winning. Sit, sit, watch me take his cannon.' },
-  tan: { n: 'Mdm Tan', ic: '🌱', topic: 'plants', partner: 'hamid', pn: 'Encik Hamid', hw: 'west lawn', pw: 'east lawn', home: [-11.5, -8.5, 0], to: [17.5, -10.5, PI / 2], pp: [18.9, -7.3, 0],
+  tan: { n: 'Mdm Yeo', ic: '🌱', topic: 'plants', partner: 'hamid', pn: 'Encik Hamid', hw: 'west lawn', pw: 'east lawn', home: [-11.5, -8.5, 0], to: [17.5, -10.5, PI / 2], pp: [18.9, -7.3, 0],
     look: { shirt: 0xb9a3d6, pattern: 'floral', trim: 0xffffff, pants: 0x4a4a5a, skin: 0xeac29b, hair: 0xb5b5b5, bun: true },
     wish: ['This money plant was my husband\'s. I water it every day. I even talk to it.', 'Still the leaves go yellow. I do not know what I am doing wrong, and there is nobody to ask.'], short: 'someone who knows plants', tell: 'Her money plant is turning yellow and she has nobody to ask.',
-    q: 'Who could help Mdm Tan with her yellow money plant?', wrong: { kai: 'Kai waters plants with a football. Somebody who grows pandan and chilli?', chua: 'Mdm Chua says the only green thing she can keep alive is Mochi\'s toy frog. Somebody with planters?' },
+    q: 'Who could help Mdm Yeo with her yellow money plant?', wrong: { kai: 'Kai waters plants with a football. Somebody who grows pandan and chilli?', chua: 'Mdm Chua says the only green thing she can keep alive is Mochi\'s toy frog. Somebody with planters?' },
     ask: ['Yellow leaves? Too much water and not enough sun. Very common, very fixable.', 'Bring her here. We repot it together. These planters have room for one more gardener.'],
-    meet: [['Encik Hamid', 'See the roots? Drowning. We give it new soil and a sunny corner.'], ['Mdm Tan', 'Every day I watered it because I was afraid to lose it.'], ['Encik Hamid', 'Then water mine instead. They are always thirsty. Come every morning.']],
+    meet: [['Encik Hamid', 'See the roots? Drowning. We give it new soil and a sunny corner.'], ['Mdm Yeo', 'Every day I watered it because I was afraid to lose it.'], ['Encik Hamid', 'Then water mine instead. They are always thirsty. Come every morning.']],
     memo: 'The money plant has new soil, and the planters have a second gardener.', after: 'Look, one new leaf! Encik Hamid says I may water the chilli, but only on Tuesdays.' },
-  ong: { n: 'Mr Ong', ic: '🐾', topic: 'cats', partner: 'chua', pn: 'Mdm Chua', hw: 'front lawn', pw: 'noticeboard', home: [2.6, -13.5, 0], to: [8.7, -4.8, -PI / 2], pp: [7.6, -7.4, PI],
+  ong: { n: 'Mr Seah', ic: '🐾', topic: 'cats', partner: 'chua', pn: 'Mdm Chua', hw: 'front lawn', pw: 'noticeboard', home: [2.6, -13.5, 0], to: [8.7, -4.8, -PI / 2], pp: [7.6, -7.4, PI],
     look: { shirt: 0x9fb4c7, pattern: 'check', trim: 0xffffff, pants: 0x3a3a3a, skin: 0xd9a070, hair: 0x9a9a9a, hairStyle: 'bald', watch: true },
     wish: ['Twelve years I had a cat. Ah Huat. Fat, orange, very bossy.', 'Since he went, my flat is very quiet. I come down here so the quiet is not so loud.'], short: 'a little company', tell: 'He misses his old cat, and his flat is very quiet.',
     q: 'Who could use the help of a man who misses his cat?', wrong: { kai: 'Kai cannot sit still for one minute. Somebody with a kitten who keeps running away?', hamid: 'Encik Hamid\'s planters are lovely, but they do not purr. Who has a kitten?' },
     ask: ['He misses his cat? Aiyoh, poor man.', 'The cat volunteers need somebody to feed the void deck cats at six. And Mochi needs an uncle. Bring him!'],
-    meet: [['Mdm Chua', 'Mr Ong, this is Mochi. Mochi, behave.'], ['Mr Ong', '... She is sitting on my foot.'], ['Mdm Chua', 'That means you are hired. Feeding time is six o\'clock sharp.']],
+    meet: [['Mdm Chua', 'Mr Seah, this is Mochi. Mochi, behave.'], ['Mr Seah', '... She is sitting on my foot.'], ['Mdm Chua', 'That means you are hired. Feeding time is six o\'clock sharp.']],
     memo: 'He feeds the void deck cats at six now. Mochi sits on his foot.', after: 'Six o\'clock, they are all waiting for me. Like I am somebody important.' },
   wei: { n: 'Wei', ic: '🏸', topic: 'badminton', partner: 'kai', pn: 'Kai', hw: 'east end of the block', pw: 'by the playground', home: [19.6, -5.2, PI], to: [17.6, -21.2, -2.05], pp: [16.9, -18.6, 0],
     look: { shirt: 0x7fd1b9, pants: 0x23324a, shorts: true, skin: 0xc98f62, hair: 0x1d1a1a, shortHair: true, scale: .8 },
@@ -7561,7 +7561,7 @@ const ELQ = [['game', 'What game did you play downstairs when you were small?', 
 const elClean = (s, n) => String(s || '').replace(/[<>&`]/g, '').replace(/\s+/g, ' ').trim().slice(0, n);
 function elNext() { const d = new Date().getDate(); for (let i = 0; i < ELQ.length; i++) { const q = ELQ[(i + d) % ELQ.length]; if (!KAKI.stories.some(s => s.q === q[0])) return q; } return null; }
 function kkBoardHTML() { const q = elNext(), n = KAKI.stories.length; return `<div class="nbx"><b>🎙 Ask a grown-up · ${n}/${ELQ.length} asked</b>${q ? `${q[1]}<br><button data-elq="${q[0]}">✏️ Write their answer</button>` : 'You have asked all six. Now ask them anything you like!'}</div>`; }
-function kkWeb() { const W = 560, H = 310, cx = W / 2, cy = H / 2, ring = [['rahim', 'Uncle Rahim', '♟'], ['ama', 'Ah Ma Lim', '🧣'], ['kavitha', 'Auntie Kavitha', '🦟'], ['kopi', 'Kopi Uncle', '☕'], ['chua', 'Mdm Chua', '🐱'], ['ong', 'Mr Ong', '🐾'], ['hamid', 'Encik Hamid', '🌿'], ['tan', 'Mdm Tan', '🌱'], ['samy', 'Uncle Samy', '🍂'], ['lim', 'Uncle Lim', '♟'], ['kai', 'Kai', '🏸'], ['wei', 'Wei', '🏸']], pos = {};
+function kkWeb() { const W = 560, H = 310, cx = W / 2, cy = H / 2, ring = [['rahim', 'Uncle Rahim', '♟'], ['ama', 'Ah Ma Lim', '🧣'], ['kavitha', 'Auntie Kavitha', '🦟'], ['kopi', 'Kopi Uncle', '☕'], ['chua', 'Mdm Chua', '🐱'], ['ong', 'Mr Seah', '🐾'], ['hamid', 'Encik Hamid', '🌿'], ['tan', 'Mdm Yeo', '🌱'], ['samy', 'Uncle Samy', '🍂'], ['lim', 'Uncle Sim', '♟'], ['kai', 'Kai', '🏸'], ['wei', 'Wei', '🏸']], pos = {};
   ring.forEach((r, i) => { const a = -PI / 2 + (i + .5) / ring.length * PI * 2; pos[r[0]] = [cx + Math.cos(a) * 228, cy + Math.sin(a) * 112]; });
   const met = k => LON[k] ? LON[k].st >= 1 : !!({ rahim: DEEP.order.includes('kopi'), ama: DEEP.order.includes('sarong'), kavitha: DEEP.order.includes('mozzie'), kopi: DEEP.order.includes('myna'), chua: KAKI.helped.cat, hamid: KAKI.helped.water, samy: KAKI.helped.card, kai: KAKI.helped.shuttle }[k]);
   let s = `<svg viewBox="0 0 ${W} ${H}" class="kkweb" role="img" aria-label="Who knows who in Block 88">`;
@@ -7591,25 +7591,26 @@ function stepKaki(dt) { if (!started) return;
 if (window.__TEST) window.__KK = { KAKI, LON, ELQ, kkAct, kkTalk, kkLabel, kkPlace, kkWeb, kkJournalHTML, kkBoardHTML, kkXP, elOpen, elSave, elClose, elNext, stepKaki };
 
 // ===== the story: seven chapters, a torn photograph of Lights Night 1985, and a new neighbour at the end
+const sN = t => String(t).replace(/\{N\}/g, PL.name);
 const SAGA = { seen: {}, pieces: 0, test: false, open: false };
 try { const s = JSON.parse(localStorage.getItem('b88_saga') || '{}'); SAGA.seen = s.seen || {}; SAGA.pieces = s.pieces || 0; } catch (_) {}
 const sagaSave = () => { try { localStorage.setItem('b88_saga', JSON.stringify({ seen: SAGA.seen, pieces: SAGA.pieces })); } catch (_) {} };
 const SCH = [null,
-  ['Four doors', 'Mei has lived at #12-34 for three months. She knows the lift is slow, the kopi is good, and exactly four of her neighbours by name. This Saturday, Mum has one rule: be home before the lights come on.'],
+  ['Four doors', '{N} has lived at #12-34 all her life. She knows the lift is slow, the kopi is good, and which three friends will be on the void deck mat. But the grown-ups behind all those other doors? Four of them, she could call by name. This Saturday, Mum has one rule: be home before the lights come on.'],
   ['The noticeboard', 'One Thank-You, and the board by the lift lobby suddenly makes sense. Twelve storeys of small troubles. Nobody here is too busy to help. They just never knew who to ask.'],
-  ['Many hands', 'A lanyard does not make a volunteer. But it does make people ask: what are we doing next? For the first time, Mei is not helping the block. The block is helping Mei.'],
-  ['Doors open', 'Posters are paper. A knock on the door is a person. Mei learns the difference the night the whole block comes downstairs at once, and nobody wants to be the first to go back up.'],
-  ['Beyond the block', 'The food boxes travel further than Block 88, and so does the news. At the shops they ask about the noticeboard. At the interchange a bus captain asks: is it true your block cleans its own void deck?'],
-  ['Hands up', 'It turns out a leader is just the person who asks the question out loud, and then waits, and counts the hands. Thirty-one went up. One paw.'],
+  ['Many hands', 'A lanyard does not make a volunteer. But it does make people ask: what are we doing next? For the first time, {N} is not helping the block alone. The block is helping {N}.'],
+  ['Doors open', 'Everybody in Block 88 likes the idea of a get-together, and everybody is waiting for somebody else to start. Posters are paper. A knock on the door is a person. {N} is about to learn the difference.'],
+  ['Beyond the block', 'News travels further than Block 88. At the shops they ask about the noticeboard. At the interchange a bus captain asks: is it true your block cleans its own void deck? Now the committee has a bigger question. Could the whole estate fill three boxes of food?'],
+  ['Hands up', 'It turns out a leader is just the person who asks the question out loud, and then waits, and counts the hands. {N} has a question ready. First she has to find out what the neighbours think of it.'],
   ['Lights Night', 'Every corridor has a lantern waiting. On the back of the old photograph somebody wrote: it only works if everybody says yes. Tonight, somebody has to say it first.']];
 const SNAME = { kopi: 'Uncle Rahim', sarong: 'Ah Ma Lim', mozzie: 'Auntie Kavitha', myna: 'Kopi Uncle' };
 const SMEM = {
-  kopi: ['Lights Night, 1985. Every window in Block 88 lit at the same time, all twelve storeys.', 'I was driving bus 36 that evening. My passengers all rushed to one side to look. I nearly tipped the bus!', 'We tore the photograph into six pieces so six families could each keep one. Here is my corner. Find the rest.'],
+  kopi: ['Lights Night, 1985. The first year of Block 88. A lantern on every corridor, all twelve storeys, lit at the same moment.', 'I was driving bus 63 that evening. My passengers all rushed to one side to look. I nearly tipped the bus!', 'We tore the photograph into six pieces so six families could each keep one. Here is my corner. Find the rest.'],
   sarong: ['Lights Night! I sewed forty lantern covers out of old sarongs. My fingers were sore for a week.', 'Tearing up the photograph was a silly idea. Now nobody has the whole picture. Just like the block, hah.', 'This is my piece. Keep it flat, girl.'],
   mozzie: ['I was nine on Lights Night. My job was to carry candles from floor to floor.', 'I dropped one on the stairs and cried. An auntie gave me another and said: one candle less, the block still shines.', 'My piece of the photograph lives in my recipe tin. Take it. It belongs with the others.'],
   myna: ['Lights Night? My father gave free kopi to the whole block. Three hundred cups!', 'He said: tonight I have no customers. Only neighbours.', 'His piece of the photograph is taped inside the till. Wait... here.'] };
 function sagaPhoto(n) { const W = 300, H = 190; let s = `<svg viewBox="0 0 ${W} ${H}" class="sgph" role="img" aria-label="An old photograph of Block 88, ${n} of 6 pieces found"><rect width="${W}" height="${H}" rx="6" fill="#3b2f22"/>`;
-  for (let i = 0; i < 6; i++) { const x0 = 12 + i * 46; if (i < n) { s += `<rect x="${x0}" y="12" width="44" height="150" fill="#1d2433"/><rect x="${x0}" y="30" width="44" height="132" fill="#6b5a44"/>`; for (let r = 0; r < 11; r++) for (let c = 0; c < 3; c++) s += `<rect x="${x0 + 5 + c * 13}" y="${36 + r * 11.4}" width="8" height="6.5" fill="${(r * 7 + c * 3 + i) % 11 === 0 ? '#fff3c4' : '#ffd76a'}"/>`; if (i % 2 === 0) s += `<circle cx="${x0 + 14 + i * 3}" cy="${20 - (i % 3)}" r="1.4" fill="#fff"/>`; }
+  for (let i = 0; i < 6; i++) { const x0 = 12 + i * 46; if (i < n) { s += `<rect x="${x0}" y="12" width="44" height="150" fill="#1d2433"/><rect x="${x0}" y="30" width="44" height="132" fill="#6b5a44"/>`; for (let r = 0; r < 11; r++) { for (let c = 0; c < 3; c++) s += `<rect x="${x0 + 5 + c * 13}" y="${36 + r * 11.4}" width="8" height="5" fill="${(r * 7 + c * 3 + i) % 4 === 0 ? '#e9c46a' : '#8f7a55'}"/>`; s += `<rect x="${x0}" y="${42.2 + r * 11.4}" width="44" height=".7" fill="#2b2118"/>`; for (let c = 0; c < 4; c++) s += `<circle cx="${x0 + 5.5 + c * 11}" cy="${44.6 + r * 11.4}" r="1.9" fill="${(r + c + i) % 2 ? '#ff7a4a' : '#ffd24a'}"/>`; } if (i % 2 === 0) s += `<circle cx="${x0 + 14 + i * 3}" cy="${20 - (i % 3)}" r="1.4" fill="#fff"/>`; }
     else s += `<rect x="${x0}" y="12" width="44" height="150" fill="#8a7a66" opacity=".45"/><text x="${x0 + 22}" y="96" text-anchor="middle" font-size="26" font-weight="700" fill="#3b2f22" opacity=".7">?</text>`; }
   return s + `<text x="${W / 2}" y="${H - 9}" text-anchor="middle" font-size="12" font-weight="600" fill="#f3e6c8">Block 88 · Lights Night · 1985 · ${n}/6</text></svg>`; }
 try { document.body.insertAdjacentHTML('beforeend', `<style>
@@ -7658,28 +7659,104 @@ function sagaClose() { $('sgM').hidden = true; DEEP.careOpen = false; SAGA.open 
 setInterval(() => { try { document.body.classList.toggle('mopen', !!document.querySelector('.modal:not([hidden])')); } catch (_) {} }, 200);
 try { $('sgB').addEventListener('click', sagaClose); $('rotB').addEventListener('click', () => document.body.classList.add('rotok')); } catch (_) {}
 function sagaPiece() { SAGA.pieces = Math.min(6, SAGA.pieces + 1); sagaSave(); sfx('thanks'); toast(`📷 A piece of the old photograph: ${SAGA.pieces}/6. Look at it in your 📖 journal.`, 4); }
-const newKid = deco({ shirt: 0xf2a6b8, trim: 0xffffff, pants: 0x4f8fd8, shorts: true, skin: 0xc98f62, hair: 0x1d1a1a, pigtails: true, scale: .8 }, -1.2, -3.2, PI); newKid.tag = tag('Aisyah', { size: .3 }); newKid.tag.position.set(-1.2, 1.7, -3.2);
+const newKid = deco({ shirt: 0xf2a6b8, trim: 0xffffff, pants: 0x4f8fd8, shorts: true, skin: 0xc98f62, hair: 0x1d1a1a, pigtails: true, scale: .8 }, -1.2, -3.2, PI); newKid.tag = tag('Nadia', { size: .3 }); newKid.tag.position.set(-1.2, 1.7, -3.2);
 const gFish = tg(); gA(gFish, 's', -0.86, .62, -3.38, .22, .26, .22, 0xcfeaf5).material = new T.MeshLambertMaterial({ color: 0xcfeaf5, transparent: true, opacity: .55 }); gA(gFish, 's', -0.86, .6, -3.38, .08, .06, .11, 0xf08a1c);
 function sagaKid() { const on = !!SAGA.seen.end; newKid.g.visible = on; newKid.tag.visible = on; gFish.visible = on; }
 sagaKid();
-inter.push({ pos: () => newKid.g.position, r: 2.3, label: 'Talk', ok: () => !!SAGA.seen.end && !DEEP.role, act: () => { cFace(newKid); SAGA.kidN = ((SAGA.kidN || 0) + 1) % 3; say([['Aisyah', ['We just moved in. #03-36. Is the lift always this slow?', 'This is Bubbles. He is a goldfish. He has never lived in a block before either.', 'Somebody pinned a note on the board: "Welcome, new family at #03-36." Was that you?'][SAGA.kidN]]]); } });
+inter.push({ pos: () => newKid.g.position, r: 2.3, label: 'Talk', ok: () => !!SAGA.seen.end && !DEEP.role, act: () => { cFace(newKid); SAGA.kidN = ((SAGA.kidN || 0) + 1) % 3; say([['Nadia', ['We just moved in. #03-36. Is the lift always this slow?', 'This is Bubbles. He is a goldfish. He has never lived in a block before either.', 'Somebody pinned a note on the board: "Welcome, new family at #03-36." Was that you?'][SAGA.kidN]]]); } });
 function sagaNext() { if (window.__TEST && !SAGA.test) return null; const s = SAGA.seen;
   if (!s.ch1) return 'ch1'; for (let i = 1; i <= 4; i++) if (!s['m' + i] && DEEP.order.length >= i) return 'm' + i;
   if (!s.k1 && Object.keys(KAKI.pairs).length >= 1) return 'k1'; if (!s.b1 && Object.keys(LV.big).length >= 1) return 'b1';
   if (!s.whole && SAGA.pieces >= 6) return 'whole'; if (!s.end && LV.big.fest && !LV.fest) return 'end'; return null; }
 const sagaBusy = () => !!sagaNext();
 function sagaRun(id) { SAGA.seen[id] = 1; sagaSave();
-  if (id === 'ch1') sagaCard('Chapter 1', SCH[1][0], SCH[1][1], false);
+  if (id === 'ch1') sagaCard('Chapter 1', SCH[1][0], sN(SCH[1][1]), false);
   else if (id[0] === 'm') { const k = DEEP.order[+id[1] - 1], nm = SNAME[k] || 'A neighbour', L = (SMEM[k] || SMEM.kopi).map(t => [nm, t]); if (SAGA.pieces === 0) L.unshift([nm, 'Before you go. Did anybody ever tell you about Lights Night?']); say(L, sagaPiece); }
-  else if (id === 'k1') { const k = Object.keys(KAKI.pairs)[0], pn = LON[k] ? LON[k].pn : 'Mdm Chua'; say([[pn, 'You are the girl collecting the old photograph, yes? Half the block is talking about it.'], [pn, 'My mother kept a piece in her sewing box, under the buttons. I never knew what it was for. Now I do.']], sagaPiece); }
+  else if (id === 'k1') { const k = Object.keys(KAKI.pairs)[0], G = { lim: ['Uncle Sim', 'My late wife kept a piece in her sewing box, under the buttons. I never knew what it was for. Now I do.'], tan: ['Mdm Yeo', 'My husband pressed a piece inside his gardening book. Page forty, with the orchids. He would want you to have it.'], ong: ['Mr Seah', 'I found a piece behind Ah Huat\'s photo frame. That cat sat on every important thing in my flat.'], wei: ['Kai', 'My Ah Ma has a piece! She said: give it to the girl with the noticeboard. So. Here.'] }[k] || ['Mdm Chua', 'My mother kept a piece in her sewing box, under the buttons. I never knew what it was for. Now I do.']; say([[G[0], 'You are the one collecting the old photograph, yes? Half the block is talking about it.'], [G[0], G[1]]], sagaPiece); }
   else if (id === 'b1') say([['Town council officer', 'After what you organised, I went through the old committee file. Look what was clipped inside.'], ['Town council officer', 'A corner of a photograph, and a note in blue ink: "Lights Night, 1985. Somebody do it again someday."']], sagaPiece);
-  else if (id === 'whole') sagaCard('The photograph', 'Six pieces, one block', 'Six families kept six pieces for forty years. Laid side by side on the noticeboard, they show Block 88 with every single window lit. On the back, in faded ink: "It only works if everybody says yes."', true, () => toast('🎆 Lights Night can come back. Keep growing: Tembusu Day opens at level 7.', 5));
-  else if (id === 'end') sagaCard('Epilogue', 'The next Saturday', 'A lorry stops outside Block 88. A girl about Mei\'s age climbs down, holding a goldfish in a plastic bag, and looks up at twelve storeys of strangers. Mei knows exactly how that feels. So she goes downstairs.', true, () => fadeDo(() => { sagaKid(); P.p.set(-1.2, 0, -5.6); P.v.set(0, 0, 0); cam.yaw = PI; say([[PL.name, 'Hi. I am ' + PL.name + '. #12-34. Do you want to see our noticeboard?'], ['Aisyah', '... Okay. I am Aisyah. This is Bubbles.'], [PL.name, 'Come. I will tell you everybody\'s name.']], () => sagaCard('The end, and the beginning', 'Block 88', 'A block gets brighter when you notice people. Thank you for playing. Aisyah is by the lift lobby now, and she does not know anybody yet.', false)); })); }
-const _lvUpS = lvUp; lvUp = function (n) { _lvUpS(n); if (window.__TEST && !LV.testPop) return; try { $('lvUS').innerHTML = `<b>Chapter ${n} · ${SCH[n][0]}</b>${SCH[n][1]}`; } catch (_) {} };
-function sagaJournalHTML() { const n = LV.seen; return `<p class="nbh">📖 The story so far</p><div class="sgl">${sagaPhoto(SAGA.pieces)}<ol>${SCH.slice(1).map((c, i) => i < n ? `<li><b>${c[0]}</b><br>${c[1]}</li>` : i === n ? `<li class="next"><b>${c[0]}</b><br>Still to come.</li>` : '').join('')}</ol>${SAGA.seen.end ? '<p style="margin:6px 0 0"><b>Epilogue.</b> A new girl moved in at #03-36. Mei went downstairs to say hello.</p>' : ''}</div>`; }
+  else if (id === 'whole') sagaCard('The photograph', 'Six pieces, one block', 'Six families kept six pieces for forty years. Laid side by side on the noticeboard, they show Block 88 in its very first year, with a lantern glowing on every corridor. On the back, in faded ink: "It only works if everybody says yes."', true, () => toast(LV.seen >= 7 ? '🎆 Lights Night can come back. Start it from the noticeboard.' : '🎆 Lights Night can come back. Keep growing: you can start it at level 7.', 5));
+  else if (id === 'end') sagaCard('Epilogue', 'The next Saturday', sN('A lorry stops outside Block 88. A girl about {N}\'s age climbs down, holding a goldfish in a plastic bag, and looks up at twelve storeys of strangers. {N} remembers when she only knew four doors. So she goes downstairs.'), true, () => fadeDo(() => { sagaKid(); P.p.set(-1.2, 0, -5.6); P.v.set(0, 0, 0); cam.yaw = PI; say([[PL.name, 'Hi. I am ' + PL.name + '. #12-34. Do you want to see our noticeboard?'], ['Nadia', '... Okay. I am Nadia. This is Bubbles.'], [PL.name, 'Come. I will tell you everybody\'s name.']], () => sagaCard('The end, and the beginning', 'Block 88', 'A block gets brighter when you notice people. Thank you for playing. Nadia is by the lift lobby now, and she does not know anybody yet.', false)); })); }
+const _lvUpS = lvUp; lvUp = function (n) { _lvUpS(n); if (window.__TEST && !LV.testPop) return; try { $('lvUS').innerHTML = `<b>Chapter ${n} · ${SCH[n][0]}</b>`; $('lvUS').appendChild(document.createTextNode(sN(SCH[n][1]))); } catch (_) {} };
+function sagaJournalHTML() { const n = LV.seen; return `<p class="nbh">📖 The story so far</p><div class="sgl">${sagaPhoto(SAGA.pieces)}<ol>${SCH.slice(1).map((c, i) => i < n ? `<li><b>${c[0]}</b><br>${esc(sN(c[1]))}</li>` : i === n ? `<li class="next"><b>${c[0]}</b><br>Still to come.</li>` : '').join('')}</ol>${SAGA.seen.end ? '<p style="margin:6px 0 0"><b>Epilogue.</b> A new girl moved in at #03-36. ' + esc(PL.name) + ' went downstairs to say hello.</p>' : ''}</div>`; }
 const _kkJournalS = kkJournalHTML; kkJournalHTML = function () { return sagaJournalHTML() + _kkJournalS(); };
-function stepSaga(dt) { if (!started || SAGA.open || (window.__TEST && !SAGA.test)) return; if (dlg || DEEP.role || PLAN.on || TUT.on || (LV.q || 0) < (SAGA.seen.ch1 ? .7 : 2.2)) return; const id = sagaNext(); if (!id) return; if (!window.__TEST && document.querySelector('.modal:not([hidden])')) return; sagaRun(id); }
+function stepSaga(dt) { if (!started || SAGA.open || (window.__TEST && !SAGA.test)) return; if (!window.__TEST && !WORLD.greeted) return; if (dlg || DEEP.role || PLAN.on || TUT.on || (LV.q || 0) < (SAGA.seen.ch1 ? .7 : 2.2)) return; const id = sagaNext(); if (!id) return; if (!window.__TEST && document.querySelector('.modal:not([hidden])')) return; sagaRun(id); }
 if (window.__TEST) window.__SG = { SAGA, SCH, sagaNext, sagaRun, sagaClose, sagaPhoto, sagaJournalHTML, stepSaga, newKid };
+// ===== the block remembers: what you built, who you befriended, the old photograph and which day it is are kept between visits
+const WORLD = { day: 1, date: '', back: false, party: 0, gift: null, loaded: false, greeted: false, t: 0, last: '', test: false };
+let wSaved = null;
+try { wSaved = JSON.parse(localStorage.getItem('b88_world') || 'null'); } catch (_) {}
+const wToday = () => { const d = new Date(); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; };
+function worldQuiet(fn) { const _s = sfx, _t = toast, _p = phoneMsg, n = DEEP.log.length; sfx = () => {}; toast = () => {}; phoneMsg = () => {}; try { fn(); } catch (_) {} sfx = _s; toast = _t; phoneMsg = _p; DEEP.log.length = Math.min(DEEP.log.length, n); }
+function worldSnap() { return { day: WORLD.day, date: WORLD.date, built: Object.keys(TOWN.built).filter(k => TOWN.built[k] === true), paint: NICHE.paint ?? null, hearts: Object.fromEntries(Object.keys(NB).filter(k => NB[k].h > 0).map(k => [k, NB[k].h])), memo: Object.fromEntries(Object.keys(NB).filter(k => NB[k].memo).map(k => [k, NB[k].memo])), rahim: STORY.rahim >= 3 ? 3 : 0, ama: STORY.ama ? 1 : 0, own: [...COLLECT.own], party: WORLD.party, gift: DEEP.legacy || WORLD.gift || null }; }
+function worldSave() { if (!WORLD.loaded) return; if (DEEP.party >= 2) WORLD.party = 2; try { const j = JSON.stringify(worldSnap()); if (j !== WORLD.last) { WORLD.last = j; localStorage.setItem('b88_world', j); } } catch (_) {} }
+function worldRestore(s) {
+  worldQuiet(() => {
+    for (const k of s.built || []) { if (!PG[k] || TOWN.built[k] === true) continue; try { _bpD(k); if (PRES[k]) PRES[k].forEach(c => c.g.visible = true); if (k === 'lup') wongCome(); } catch (_) {} }
+    if ((s.built || []).includes('paint')) { NICHE.paintAsk = s.paint == null; if (s.paint != null) repaint(s.paint); }
+    for (const k in s.hearts || {}) if (NB[k]) NB[k].h = Math.max(NB[k].h || 0, Math.min(5, s.hearts[k] | 0));
+    for (const k in s.memo || {}) if (NB[k] && !NB[k].memo) NB[k].memo = String(s.memo[k]).slice(0, 80);
+    if (s.rahim >= 3) { STORY.rahim = 3; const r = npcs.rahim.c.g.position; mrLim.g.position.set(r.x + 1.5, r.y, r.z + .3); }
+    if (s.ama) { STORY.ama = 1; TOWN.unlock.kueh = 1; }
+    for (const id of s.own || []) if (typeof id === 'string' && COLL.some(c => c.id === id)) COLLECT.own.add(id);
+    if (s.gift && !DEEP.legacy) legacy(s.gift);
+  });
+  WORLD.party = s.party >= 2 ? 2 : 0; WORLD.gift = s.gift || null;
+}
+// things the bigger projects left behind
+function worldBig() { try { if (LV.big.clean) gAward.visible = true; for (const k in gProp) if (LV.big['meet_' + k]) gProp[k].visible = true; } catch (_) {} }
+function worldBegin() {
+  WORLD.loaded = true; const today = wToday(), old = wSaved && typeof wSaved === 'object' ? wSaved : null;
+  WORLD.back = !!old || LV.seen > 1 || !!SAGA.seen.ch1;
+  WORLD.day = old ? Math.max(1, old.day | 0) + (old.date && old.date !== today ? 1 : 0) : 1; WORLD.newDay = !old || old.date !== today; WORLD.date = today;
+  if (old) worldRestore(old); worldBig(); LV.base = null; updUI(); worldSave();
+}
+function worldHello() {
+  WORLD.greeted = true; if (!WORLD.back) return;
+  const BN = { tree: 'your tree', garden: 'the community garden', mural: 'the art wall', swing: 'the new swings', market: 'the night market', lup: 'the lift that stops at every storey', paint: 'the fresh paint' }, built = Object.keys(TOWN.built).filter(k => TOWN.built[k] === true).map(k => BN[k]).filter(Boolean), pairs = Object.keys(KAKI.pairs).length, bits = [];
+  bits.push(`${PL.name} is a ${LVL[LV.seen - 1].n} now.`);
+  if (pairs) bits.push(`${pairs} introduction${pairs > 1 ? 's' : ''} made.`);
+  if (SAGA.pieces && SAGA.pieces < 6) bits.push(`${SAGA.pieces} of 6 pieces of the old photograph found.`); else if (SAGA.pieces >= 6) bits.push('The old photograph is whole again.');
+  if (built.length) bits.push(`Still here, thanks to you: ${built.slice(0, 4).join(', ')}${built.length > 4 ? ' and more' : ''}.`);
+  bits.push(WORLD.newDay ? 'It is a new day, so the neighbours have fresh errands and their windows are waiting to glow again.' : 'The day starts over: the neighbours have their errands ready again.');
+  sagaCard('The block remembers', WORLD.newDay ? `Day ${WORLD.day} at Block 88` : `Back at Block 88 · Day ${WORLD.day}`, bits.join(' '), SAGA.pieces > 0);
+}
+// after the anniversary party has been held once, later days end with a quieter evening
+const _finW = finale;
+finale = function () {
+  if ((window.__TEST && !WORLD.test) || WORLD.party < 2) return _finW();
+  say([['Block 88', `Day ${WORLD.day}. Four Thank-Yous, and every window on Block 88 is glowing again.`], ['Block chat', oneOf(['Who lit up the whole block again? 👀 We all know who.', 'Lights look so nice tonight. Kopi downstairs, anybody?', 'Same girl again! Our block is lucky lah. 🙏'])]], () => {
+    night = .001; lampMat.color.setHex(0xffd27a);
+    setTimeout(() => { $('endTxt').textContent = `Day ${WORLD.day}: you helped Uncle Rahim, Ah Ma Lim, Auntie Kavitha and the whole food centre again. Everything you have built, every friend you have made and every page of your journal will still be here tomorrow.`; $('end').hidden = false; }, window.__TEST ? 0 : 4200); });
+};
+// the old photograph, pinned piece by piece on the back of the noticeboard, facing the lift lobby
+const gPhoto = tg(), PHP = [];
+{ const X = 4.6, Z = -4.4, zf = Z + .05;
+  gA(gPhoto, 'b', X, 1.5, zf, 2.56, 1.34, .03, 0x3b2f22);
+  const cap = signAt('LIGHTS NIGHT · 1985\n~Six families each kept a piece', 1.9, .3, { bg: '#f3e6c8', fg: '#3b2f22', sub: '#6b5a44', screws: false, noFrame: true }, X, 2.0, zf + .03, 0); gPhoto.add(cap);
+  for (let i = 0; i < 6; i++) {
+    const t = ctex(64, 150, x => { x.fillStyle = '#1d2433'; x.fillRect(0, 0, 64, 150); x.fillStyle = '#fff'; if (i % 2 === 0) x.fillRect(14 + i * 5, 8 - (i % 3), 2, 2); x.fillStyle = '#6b5a44'; x.fillRect(0, 20, 64, 130);
+      for (let r = 0; r < 11; r++) { for (let c = 0; c < 3; c++) { x.fillStyle = (r * 7 + c * 3 + i) % 4 === 0 ? '#e9c46a' : '#8f7a55'; x.fillRect(7 + c * 19, 26 + r * 11.3, 12, 5); } x.fillStyle = '#2b2118'; x.fillRect(0, 32.4 + r * 11.3, 64, 1); for (let c = 0; c < 4; c++) { x.fillStyle = (r + c + i) % 2 ? '#ff7a4a' : '#ffd24a'; x.beginPath(); x.arc(8 + c * 16, 35.2 + r * 11.3, 2.6, 0, PI * 2); x.fill(); } } });
+    const g = new T.Group(); g.position.set(X - .9 + i * .36, 1.36, zf + .03); g.rotation.z = [.03, -.02, .015, -.035, .02, -.01][i]; gPhoto.add(g);
+    const m = new T.Mesh(LG.b, new T.MeshLambertMaterial({ map: t })); m.scale.set(.33, .78, .012); g.add(m);
+    const w = new T.Mesh(LG.b, lmat(0xfaf6ee)); w.scale.set(.35, .8, .008); w.position.z = -.004; g.add(w);
+    const pin = new T.Mesh(LG.s, lmat([0xd7332b, 0x2f6fd0, 0xf2c230, 0x2f9e58, 0xd7332b, 0x9b7fd1][i])); pin.scale.set(.04, .04, .04); pin.position.set(0, .36, .016); g.add(pin);
+    const q = new T.Group(); q.position.copy(g.position); gPhoto.add(q); const ph = new T.Mesh(LG.b, lmat(0x5a4a38)); ph.scale.set(.33, .78, .006); q.add(ph); const qm = signAt('?', .2, .2, { bg: '#5a4a38', fg: '#b9a98f', screws: false, noFrame: true }, 0, 0, .008, 0); scene.remove(qm); q.add(qm);
+    PHP.push([g, q]); }
+  WORLD.frame = tg(); for (const [dx, dy, sx, sy] of [[0, .43, 2.26, .04], [0, -.43, 2.26, .04], [-1.11, 0, .04, .9], [1.11, 0, .04, .9]]) gA(WORLD.frame, 'b', X + dx, 1.36 + dy, zf + .04, sx, sy, .03, 0xd9a441);
+}
+function photoShow() { const n = SAGA.pieces; WORLD.phN = n; gPhoto.visible = n > 0; PHP.forEach(([g, q], i) => { g.visible = i < n; q.visible = i >= n; }); WORLD.frame.visible = n >= 6; }
+photoShow();
+// a fresh start, from the menu
+try { $('mRestart').insertAdjacentHTML('afterend', '<button id="mNew" class="ghost">🗑 Start a new story</button>');
+  $('mNew').addEventListener('click', () => { $('menu').hidden = true; choose('Start a new story?', 'This erases your level, journal, introductions, the photograph and everything you built. Your character and settings are kept.', [['Keep my Block 88', () => {}], ['Erase and start again', () => { WORLD.loaded = false; try { for (const k of ['b88_world', 'b88_care', 'b88_level', 'b88_kaki', 'b88_saga', 'b88_places', 'b88_days', 'block88-real', 'block88-daily']) localStorage.removeItem(k); } catch (_) {} location.reload(); }]]); }); } catch (_) {}
+function stepMemory(dt) {
+  if (!started || (window.__TEST && !WORLD.test)) return;
+  if (!WORLD.loaded) { worldBegin(); return; }
+  if (WORLD.phN !== SAGA.pieces) photoShow();
+  if (!WORLD.greeted && !dlg && !DEEP.role && !PLAN.on && !TUT.on && (LV.q || 0) > .5 && (window.__TEST || !document.querySelector('.modal:not([hidden])'))) worldHello();
+  WORLD.t += dt; if (WORLD.t > 3) { WORLD.t = 0; worldSave(); }
+}
+if (window.__TEST) window.__W = { TOWN, NB, STORY, COLLECT, NICHE, PG, PROJ, build: k => buildProj(k), repaint, fin: () => finale(), WORLD, worldSnap, worldSave, worldRestore, worldBegin, worldHello, worldBig, photoShow, gPhoto, PHP, stepMemory, setSaved: v => { wSaved = v; } };
 
 // ===== more depth everywhere: clouds, birds, pond life, tree roots and fallen leaves
 kit('dcl', new T.SphereGeometry(.5, 9, 7), new T.MeshLambertMaterial({ color: 0xffffff, emissive: 0x8fa3b8, emissiveIntensity: .45, fog: false }), 80, false);
@@ -7749,7 +7826,7 @@ try {
 } catch (_) {}
 
 // ===== hook everything into the frame loop
-function stepMore(dt) { stepBus(dt); stepBike(dt); stepCollect(dt); stepMarketMsg(); stepCity(dt); stepFam(dt); stepLife2(dt); stepTown(dt); stepNiche(dt); stepDeep(dt); stepRole(dt); stepExplore(dt); stepEasy(dt); stepGrass(); stepCare(dt); stepLevel(dt); stepKaki(dt); stepSaga(dt); stepDepth(dt); }
+function stepMore(dt) { stepBus(dt); stepBike(dt); stepCollect(dt); stepMarketMsg(); stepCity(dt); stepFam(dt); stepLife2(dt); stepTown(dt); stepNiche(dt); stepDeep(dt); stepRole(dt); stepExplore(dt); stepEasy(dt); stepGrass(); stepCare(dt); stepLevel(dt); stepKaki(dt); stepSaga(dt); stepMemory(dt); stepDepth(dt); }
 applyHome();
 
 // market errand trigger: Ah Ma Lim messages you
